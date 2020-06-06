@@ -1,33 +1,48 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang='ja'>
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Trans Menu</title>
 </head>
 
 <body>
-    <div id="app">
+    <div id='app'>
         <h1>店舗登録</h1>
         <p>にゃーん</p>
         <form action=''>
             <div>
-                <label for='storeName'>店舗名</label>
-                <input type='text' id="storeName" v-model="storeName">
+                <label for='store-name'>店舗名</label>
+                <input type='text' id='store-name' v-model='storeName'>
+            </div>
+            <div>
+                <label for='store-color'>店舗のイメージカラー</label>
+                <input type='color' id='store-color' v-model='storeColor'>
             </div>
             <div>
                 <label for='storePic'>店舗画像</label>
-                <input type='file' id="storePic">
+                <input type='file' id='storePic' v-on:change="uploadStorePic">
             </div>
         </form>
+        <div>
+            <p>プレビュー</p>
+            <p>{{storeName}}</p>
+            <img v-bind:src='storePicPath' alt='店舗画像'>
+
+        </div>
 
 
 
-        <button v-on:click="moveToMenuCreate">商品登録</button>
+        <button v-on:click='moveToMenuCreate'>商品登録</button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="js/StoreCreate.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src='js/StoreCreate.js'></script>
 </body>
 
 </html>
+
+<!-- 
+memo
+・カラーは省くかも
+-->
