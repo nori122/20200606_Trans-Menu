@@ -12,7 +12,14 @@
         <h1>店舗登録</h1>
         <p>にゃーん</p>
         <form action=''>
-            label
+            <div>
+                <label for='storeName'>店舗名</label>
+                <input type='text' id="storeName" v-model="storeName">
+            </div>
+            <div>
+                <label for='storePic'>店舗画像</label>
+                <input type='file' id="storePic">
+            </div>
         </form>
 
 
@@ -20,7 +27,7 @@
         <button v-on:click="moveToMenuCreate">商品登録</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="js/store_create.js"></script>
+    <script src="js/StoreCreate.js"></script>
 </body>
 
 </html>

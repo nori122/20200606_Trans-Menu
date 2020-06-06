@@ -4,7 +4,7 @@ new Vue({
     methods: {
         //"create_store.html"に遷移
         moveToStoreCreate: function () {
-            location.href = "store_create.html";
+            location.href = "StoreCreate.html";
         },
         //"store_list.html"に遷移
         moveToStoreList: function () {
