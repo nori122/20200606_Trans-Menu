@@ -13,16 +13,16 @@
         <p>にゃーん</p>
         <form action=''>
             <div>
-                <label for='store-name'>店舗名</label>
-                <input type='text' id='store-name' v-model='storeName'>
+                <label for='store-name'>店舗名:</label>
+                <input type='text' id='store-name' v-model='storeName' placeholder='店舗名を入力'>
             </div>
             <div>
-                <label for='store-color'>店舗のイメージカラー</label>
+                <label for='store-color'>店舗のイメージカラー:</label>
                 <input type='color' id='store-color' v-model='storeColor'>
             </div>
             <div>
-                <label for='storePic'>店舗画像</label>
-                <input type='file' id='storePic' v-on:change="uploadStorePic">
+                <label for='storePic'>店舗画像:</label>
+                <input ref='upfile' type='file' id='storePic' v-on:change='uploadStorePic'>
             </div>
         </form>
         <div>
@@ -34,7 +34,7 @@
 
 
 
-        <button v-on:click='moveToMenuCreate'>商品登録</button>
+        <button v-on:click='moveToMenuCreate'>商品登録へすすむ</button>
     </div>
     <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
     <script src='js/StoreCreate.js'></script>
@@ -44,5 +44,7 @@
 
 <!-- 
 memo
+・次はfirestoreへの接続をやる！！
 ・カラーは省くかも
+・できればプレビューのところで、作成ずみの店舗イメージが見せられるといいなー。iPhoneのベゼル作って、それぞれをそれっぽく配置して。
 -->
