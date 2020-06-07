@@ -58,4 +58,4 @@ new Vue({
 });
 
 //memo
-// storeNameをGetで渡して、生成するstoreメニューページの動的パラメータにする
+// 
