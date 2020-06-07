@@ -43,9 +43,9 @@
             <button v-on:click='downloadImgFromDB'>storageから画像を読み込む</button>
         </div>
         <div>
-            <img id=""
-                src='https://firebasestorage.googleapis.com/v0/b/transmenu-98803.appspot.com/o/images%2Fshake.png?alt=media&token=a0c5a0ff-fdc0-40b6-a7c0-c4762a3427f8'
-                alt='ダウンロードされた画像'>
+            <input type='file' id='photo'>
+            <img src='' alt='' id='image'>
+            <button onclick="uploadImage()">upload Image</button>
         </div>
 
 
@@ -56,6 +56,7 @@
     <!-- Firebaseへ接続 -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
              https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -75,10 +76,26 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-        // 店舗情報を格納するstoreDB変数を宣言
-        var storeDB = firebase.firestore().collection('stores');
+        console.log(firebase);
 
+        function uploadImage() {
+            const ref = firebase.storage().ref()
+            const file = document.querySelector("#photo").files[0]
+            const name = new Date() + '-' + file.name
+            const metadata = {
+                contentType: file.type
+            }
+            const task = ref.child(name).put(file, metadata)
+            task
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then(url => {
+                    console.log(url)
+                    alert("Image upload sucessfully")
+                    const image = document.querySelector('#image')
+                    image.src
+                })
+
+        }
 
 
 
