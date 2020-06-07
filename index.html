@@ -14,19 +14,36 @@
         <button v-on:click='moveToStoreCreate'>メニューを作る</button>
         <button v-on:click='moveToStoreList'>店舗一覧</button>
     </div>
+
+
+
+
     <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
     <script src='js/index.js'></script>
-
     <!-- Firebaseへ接続 -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="/__/firebase/7.15.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
          https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="/__/firebase/7.15.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
 
-    <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
+            authDomain: "transmenu-98803.firebaseapp.com",
+            databaseURL: "https://transmenu-98803.firebaseio.com",
+            projectId: "transmenu-98803",
+            storageBucket: "transmenu-98803.appspot.com",
+            messagingSenderId: "1003433484012",
+            appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
+            measurementId: "G-KZBKDT9WYL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 </body>
 
 </html>

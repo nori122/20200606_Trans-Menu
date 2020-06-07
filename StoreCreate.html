@@ -22,7 +22,7 @@
             </div>
             <div>
                 <label for='storePic'>店舗画像:</label>
-                <input ref='upfile' type='file' id='storePic' v-on:change='uploadStorePic'>
+                <input ref='upfile' type='file' id='storePic' v-on:change='previewStorePic'>
             </div>
         </form>
         <div>
@@ -33,11 +33,60 @@
         </div>
 
 
+        <div>
+            <button v-on:click='pushStoreToDB' id="pushStoreToDB">店舗情報の登録</button>
+        </div>
+        <div>
+            <button v-on:click='moveToMenuCreate'>商品登録へすすむ</button>
+        </div>
+        <div>
+            <button v-on:click='downloadImgFromDB'>storageから画像を読み込む</button>
+        </div>
+        <div>
+            <img id=""
+                src='https://firebasestorage.googleapis.com/v0/b/transmenu-98803.appspot.com/o/images%2Fshake.png?alt=media&token=a0c5a0ff-fdc0-40b6-a7c0-c4762a3427f8'
+                alt='ダウンロードされた画像'>
+        </div>
 
-        <button v-on:click='moveToMenuCreate'>商品登録へすすむ</button>
+
     </div>
+
     <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
     <script src='js/StoreCreate.js'></script>
+    <!-- Firebaseへ接続 -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
+            authDomain: "transmenu-98803.firebaseapp.com",
+            databaseURL: "https://transmenu-98803.firebaseio.com",
+            projectId: "transmenu-98803",
+            storageBucket: "transmenu-98803.appspot.com",
+            messagingSenderId: "1003433484012",
+            appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
+            measurementId: "G-KZBKDT9WYL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        // 店舗情報を格納するstoreDB変数を宣言
+        var storeDB = firebase.firestore().collection('stores');
+
+
+
+
+
+
+
+    </script>
+
 </body>
 
 </html>

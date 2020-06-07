@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>TEST</title>
+</head>
+
+<body>
+
+    <progress value="0" max="100" id="uploader">0%</progress>
+    <input type='file' value="upload" id="fileButton">
+
+
+
+    <!-- Firebaseへ接続 -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+
+
+    <script>
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
+            authDomain: "transmenu-98803.firebaseapp.com",
+            databaseURL: "https://transmenu-98803.firebaseio.com",
+            projectId: "transmenu-98803",
+            storageBucket: "transmenu-98803.appspot.com",
+            messagingSenderId: "1003433484012",
+            appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
+            measurementId: "G-KZBKDT9WYL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a non-default Storage bucket
+        // var storage = firebase.app().storage("gs://transmenu-98803.appspot.com");
+
+        var uploader = document.getElementsByTagName('uploader');
+        var fileButton = document.getElementsByTagName('fileButton');
+
+        fileButton.addEventListner('change', function (e) {
+            var file = e.target.files[0];
+            var storageRef = firebase.storage().ref('images/' + file.name);
+            var task = storageRef.put(file);
+            task.on('state_changed'),
+                function progress(snapshot) {
+                    var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    uploader.value = percentage;
+                },
+                function error(err) {
+
+                },
+                function complete() {
+
+                }
+
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>

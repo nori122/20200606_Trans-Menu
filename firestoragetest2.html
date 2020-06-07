@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>TEST</title>
+</head>
+
+<body>
+
+    <input type='file' id='photo'>
+    <img src='' alt='' id='image'>
+    <button onclick="uploadImage()">upload Image</button>
+
+
+
+
+    <!-- Firebaseへ接続 -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+
+
+    <script>
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
+            authDomain: "transmenu-98803.firebaseapp.com",
+            databaseURL: "https://transmenu-98803.firebaseio.com",
+            projectId: "transmenu-98803",
+            storageBucket: "transmenu-98803.appspot.com",
+            messagingSenderId: "1003433484012",
+            appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
+            measurementId: "G-KZBKDT9WYL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        console.log(firebase);
+
+        function uploadImage() {
+            const ref = firebase.storage().ref()
+            const file = document.querySelector("#photo").files[0]
+            const name = new Date() + '-' + file.name
+            const metadata = {
+                contentType: file.type
+            }
+            const task = ref.child(name).put(file, metadata)
+            task
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then(url => {
+                    console.log(url)
+                    alert("Image upload sucessfully")
+                    const image = document.querySelector('#image')
+                    image.src
+                })
+
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
