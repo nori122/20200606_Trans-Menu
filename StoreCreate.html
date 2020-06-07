@@ -10,7 +10,15 @@
 <body>
     <div id='app'>
         <h1>店舗登録</h1>
-        <p>にゃーん</p>
+
+        <!-- インド人のyoutubeからパクった内容 -->
+        <div>
+            <input type='file' id='photo'>
+            <img src='' alt='' id='image'>
+            <button v-on:click="uploadImage()">upload Image</button>
+        </div>
+
+        <!-- 店舗名、カラー、画像をアップロードするための入力フォーム -->
         <form action=''>
             <div>
                 <label for='store-name'>店舗名:</label>
@@ -25,14 +33,17 @@
                 <input ref='upfile' type='file' id='storePic' v-on:change='previewStorePic'>
             </div>
         </form>
+
+
+        <!-- 前段のフォームで入力した店舗情報のプレビュー -->
         <div>
             <p>プレビュー</p>
             <p>{{storeName}}</p>
             <img v-bind:src='storePicPath' alt='店舗画像'>
-
         </div>
 
 
+        <!-- 前段のフォームで入力した店舗情報をFireBaseに登録する -->
         <div>
             <button v-on:click='pushStoreToDB' id="pushStoreToDB">店舗情報の登録</button>
         </div>
@@ -41,12 +52,6 @@
         </div>
         <div>
             <button v-on:click='downloadImgFromDB'>storageから画像を読み込む</button>
-        </div>
-
-        <div>
-            <input type='file' id='photo'>
-            <img src='' alt='' id='image'>
-            <button onclick="uploadImage()">upload Image</button>
         </div>
 
 
