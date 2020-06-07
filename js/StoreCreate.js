@@ -24,26 +24,30 @@ new Vue({
 
         //フォームの入力内容をCloud Firestoreとstorageに送信
         pushStoreToDB: function () {
-            //Cloud Firestoreに店舗名を追加
-            storeDB.add({
-                storeName: this.storeName,
-                storePicPath: "",
-            });
+
             //Storageに店舗画像を追加
             const ref = firebase.storage().ref()
             const file = document.querySelector("#storePic").files[0]
-            const name = new Date() + '-' + file.name
+            const name = new Date() + '_' + file.name
             const metadata = {
                 contentType: file.type
             }
-            const task = ref.child(name).put(file, metadata)
+            const task = ref.child('images/' + name).put(file, metadata)
             task
                 .then(snapshot => snapshot.ref.getDownloadURL())
                 .then(url => {
                     console.log(url)
-                    alert("Image upload sucessfully")
+                    alert("店舗登録が完了しました")
+                    //#imageにURLを突っ込む方法
                     // const image = document.querySelector('#image')
                     // image.src = url
+
+                    //Cloud Firestoreに店舗名と画像URLを追加
+                    storeDB.add({
+                        storeName: this.storeName,
+                        storePicPath: url,
+                        storeColor: "",
+                    });
                 })
 
         },
