@@ -11,12 +11,12 @@
     <div id='app'>
         <h1>店舗登録</h1>
 
-        <!-- インド人のyoutubeからパクった内容 -->
+        <!-- インド人のyoutubeからパクった内容
         <div>
             <input type='file' id='photo'>
-            <img src='' alt='' id='image'>
+            <img id='image'>
             <button v-on:click="uploadImage()">upload Image</button>
-        </div>
+        </div> -->
 
         <!-- 店舗名、カラー、画像をアップロードするための入力フォーム -->
         <form action=''>
@@ -80,10 +80,15 @@
             appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
             measurementId: "G-KZBKDT9WYL"
         };
+
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+
         // Firebaseと接続できてるかチェック
         // console.log(firebase);
+
+        // FirestoreのstoresコレクションをstoreDBオブジェクトとして定義
+        var storeDB = firebase.firestore().collection('stores');
 
     </script>
 

@@ -16,22 +16,22 @@ new Vue({
                 this.storePicPath = window.URL.createObjectURL(fileImg);
             }
         },
+
         //'MenuCreate.html'に遷移
         moveToMenuCreate: function () {
             location.href = 'MenuCreate.html';
         },
-        //フォームの入力内容をCloud Firestoreに送信
+
+        //フォームの入力内容をCloud Firestoreとstorageに送信
         pushStoreToDB: function () {
+            //Cloud Firestoreに店舗名を追加
             storeDB.add({
                 storeName: this.storeName,
                 storePicPath: "",
-            })
-        },
-        downloadImgFromDB: function () {
-        },
-        uploadImage() {
+            });
+            //Storageに店舗画像を追加
             const ref = firebase.storage().ref()
-            const file = document.querySelector("#photo").files[0]
+            const file = document.querySelector("#storePic").files[0]
             const name = new Date() + '-' + file.name
             const metadata = {
                 contentType: file.type
@@ -42,10 +42,14 @@ new Vue({
                 .then(url => {
                     console.log(url)
                     alert("Image upload sucessfully")
-                    const image = document.querySelector('#image')
-                    image.src
+                    // const image = document.querySelector('#image')
+                    // image.src = url
                 })
-        }
+
+        },
+        downloadImgFromDB: function () {
+        },
+
     }
 });
 
