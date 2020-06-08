@@ -36,9 +36,20 @@
             <p>プレビュー</p>
             <p>{{itemName1}} : {{itemPrice1}} 円</p>
 
-
+            <!-- イメージプレビューのバインディングがうまくいかない。
+            店舗情報のときはコピペだったので、理解が必要 
+            可能ならこのプレビューのクオリティをあげたい-->
             <!-- <img v-bind:src='' alt='店舗画像'> -->
+
+            <!-- アップロードした画像を描写する。妥協案 -->
+            <img src='' alt='item画像1' id='itemPreview1'>
         </div>
+
+        <!-- 前段のフォームで入力した商品情報をFireBaseに登録する -->
+        <div>
+            <button v-on:click='pushItemToDB' id="pushItemToDB">店舗情報の登録</button>
+        </div>
+
         <br>
         <br>
         <br>
