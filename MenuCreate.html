@@ -12,6 +12,7 @@
         <h1>メニュー登録</h1>
 
         <!-- 商品名、値段、商品画像をアップロードするための入力フォーム -->
+        <!-- 商品1 -->
         <form action=''>
             <div>商品1
                 <div>
@@ -31,6 +32,7 @@
             </div>
         </form>
         <br><br><br>
+        <!-- 商品2 -->
         <form action=''>
             <div>商品2
                 <div>
@@ -49,12 +51,57 @@
 
             </div>
         </form>
+        <br><br><br>
+        <!-- 商品3 -->
+        <form action=''>
+            <div>商品3
+                <div>
+                    <label>商品名:</label>
+                    <input type='text' v-model='itemName3' placeholder='商品名を入力'>
+                </div>
+                <div>
+                    <label for=''>値段:</label>
+                    <input type='number' v-model='itemPrice3' placeholder='値段を入力'>
+                    円
+                </div>
+                <div>
+                    <label for=' itemPic3'>商品画像:</label>
+                    <input ref='upfile' type='file' id='itemPic3'>
+                </div>
+
+            </div>
+        </form>
+        <br><br><br>
+        <!-- 商品4 -->
+        <form action=''>
+            <div>商品4
+                <div>
+                    <label>商品名:</label>
+                    <input type='text' v-model='itemName4' placeholder='商品名を入力'>
+                </div>
+                <div>
+                    <label for=''>値段:</label>
+                    <input type='number' v-model='itemPrice4' placeholder='値段を入力'>
+                    円
+                </div>
+                <div>
+                    <label for=' itemPic4'>商品画像:</label>
+                    <input ref='upfile' type='file' id='itemPic4'>
+                </div>
+
+            </div>
+        </form>
+        <br><br><br>
+
+
 
         <!-- 前段のフォームで入力した店舗情報のプレビュー -->
         <div>
             <p>プレビュー</p>
             <p>{{itemName1}} : {{itemPrice1}} 円</p>
             <p>{{itemName2}} : {{itemPrice2}} 円</p>
+            <p>{{itemName3}} : {{itemPrice3}} 円</p>
+            <p>{{itemName4}} : {{itemPrice4}} 円</p>
 
             <!-- イメージプレビューのバインディングがうまくいかない。
             店舗情報のときはコピペだったので、理解が必要 
@@ -64,6 +111,8 @@
             <!-- アップロードした画像を描写する。妥協案 -->
             <img src='' alt='item画像1' id='itemPreview1'>
             <img src='' alt='item画像2' id='itemPreview2'>
+            <img src='' alt='item画像3' id='itemPreview3'>
+            <img src='' alt='item画像4' id='itemPreview4'>
         </div>
 
         <!-- 前段のフォームで入力した商品情報をFireBaseに登録する -->
