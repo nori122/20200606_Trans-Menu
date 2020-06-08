@@ -1,1 +1,71 @@
-yeah
+<!DOCTYPE html>
+<html lang='ja'>
+
+<head>
+    <meta charset='UTF-8'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Trans Menu</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <v-app>
+            <v-card class="mt-4 d-flex flex-column justify-center align-center pa-2" outlined tile>
+                <p>メニュー用サイトが作成されました!</p>
+                <p>Your site has been successfully created.</p>
+                <!-- QRコード -->
+                <img class="ma-auto" src='img/qr_site_top.png' alt=''>
+                <!-- URL -->
+                <a href='CreatedStore.html'>CreatedStore.html</a>
+            </v-card>
+        </v-app>
+
+
+
+    </div>
+
+
+
+
+
+    <!-- Vuetifyのscript -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+
+    <!-- 当htmlファイルのスクリプト -->
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data() {
+                return {
+                }
+            },
+            methods: {
+                openCreateStore: function () {
+                    location.href = "create_store.html";
+                },
+                openSiteTop: function () {
+                    location.href = "site_top.html";
+                }
+            }
+        });
+    </script>
+
+    <!-- loadingのscript -->
+
+
+
+    <!-- vueのスクリプト？ -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</body>
+
+</html>

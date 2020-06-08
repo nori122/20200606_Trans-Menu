@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang='ja'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Trans Menu</title>
+</head>
+
+<body>
+    <div id='app'>
+        <h1>{{storeName}}</h1>
+        <img src='' alt=''>
+        <div class='items'>
+            <div>
+                <img src='' alt=''>
+                <div>ItemName1 Price1</div>
+            </div>
+            <div>
+                <img src='' alt=''>
+                <div>ItemName2 Price2</div>
+            </div>
+            <div>
+                <img src='' alt=''>
+                <div>ItemName3 Price3</div>
+            </div>
+            <div>
+                <img src='' alt=''>
+                <div>ItemName4 Price4</div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src='js/CreatedStore.js'></script>
+
+    <!-- Firebaseへ接続 -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+                 https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+
+
+
+    <script>
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
+            authDomain: "transmenu-98803.firebaseapp.com",
+            databaseURL: "https://transmenu-98803.firebaseio.com",
+            projectId: "transmenu-98803",
+            storageBucket: "transmenu-98803.appspot.com",
+            messagingSenderId: "1003433484012",
+            appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
+            measurementId: "G-KZBKDT9WYL"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Firebaseと接続できてるかチェック
+        console.log(firebase);
+
+        // FirestoreのstoresコレクションをstoreDBオブジェクトとして定義
+        var storeDB = firebase.firestore().collection('stores');
+        // FirestoreのitemsコレクションをitemDBオブジェクトとして定義
+        var itemDB = firebase.firestore().collection('items');
+
+
+        // // Firestoreのstoresコレクションを取得
+        // storeDB.get().then(function (querySnapshot) {
+        //     // onSnapshotでデータ変更時に実行される!
+        //     // querySnapshot.docsにデータが配列形式で入る 
+        //     querySnapshot.docs.forEach(function (doc) {
+        //         const id = doc.id;
+        //         const data = doc.data();
+        //         const storeName = data.storeName;
+        //         const storePicPath = data.storePicPath;
+        //         // console.log(storeName);
+        //         // console.log(storePicPath);
+        //     });
+        //     console.log(querySnapshot.docs[0].id)
+        // });
+
+        //storeNameで指定して取得
+        storeDB.where("storeName", "==", 'aaa')
+            .get()
+            .then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    console.log(doc.id);
+                    console.log(doc.data());
+                });
+            })
+            .catch(function (error) {
+                console.log("Error getting documents: ", error);
+            });
+
+
+
+    </script>
+
+
+</body>
+
+</html>
