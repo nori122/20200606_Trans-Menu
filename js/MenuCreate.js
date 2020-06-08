@@ -2,24 +2,12 @@ new Vue({
     el: '#app',
     data: function () {
         return {
-
+            itemName1: '',
+            itemPrice1: '',
+            itemPicPath1: '',
         };
     },
     methods: {
-        //アイテム画像をプレビューする
-        previewStorePic: function () {
-            const files = this.$refs.upfile;
-            const fileImg = files.files[0];
-            if (fileImg.type.startsWith("image/")) {
-                this.storePicPath = window.URL.createObjectURL(fileImg);
-            }
-        },
-
-        //'MenuCreate.html'に遷移
-        moveToMenuCreate: function () {
-            location.href = 'MenuCreate.html';
-        },
-
         //フォームの入力内容をCloud Firestoreとstorageに送信
         pushStoreToDB: function () {
 
@@ -41,7 +29,7 @@ new Vue({
                     // image.src = url
 
                     //Cloud Firestoreに店舗名と画像URLを追加
-                    storeDB.add({
+                    itemDB.add({
                         storeName: this.storeName,
                         storePicPath: url,
                         storeColor: "",
@@ -49,9 +37,6 @@ new Vue({
                 })
 
         },
-        downloadImgFromDB: function () {
-        },
-
     }
 });
 

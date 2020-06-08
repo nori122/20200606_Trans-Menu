@@ -51,8 +51,7 @@ new Vue({
                 })
 
         },
-        downloadImgFromDB: function () {
-        },
+
 
     }
 });

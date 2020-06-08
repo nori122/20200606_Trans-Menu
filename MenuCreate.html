@@ -11,69 +11,80 @@
     <div id='app'>
         <h1>メニュー登録</h1>
 
-        <!-- 店舗名、カラー、画像をアップロードするための入力フォーム -->
+        <!-- 商品名、値段、商品画像をアップロードするための入力フォーム -->
         <form action=''>
             <div>商品1
                 <div>
-                    <label for='item1name'>商品名:</label>
-                    <input type='text' id='item1name' v-model='item1Name' placeholder='店舗名を入力'>
+                    <label>商品名:</label>
+                    <input type='text' v-model='itemName1' placeholder='商品名を入力'>
                 </div>
                 <div>
-                    <label for=''>値段</label>
-                    <input type='number'>
+                    <label for=''>値段:</label>
+                    <input type='number' v-model='itemPrice1' placeholder='値段を入力'>
+                    円
                 </div>
                 <div>
-                    <label for=' item1Pic'>商品画像:</label>
-                    <input ref='upfile' type='file' id='item1Pic' v-on:change='previewitem1Pic'>
+                    <label for=' itemPic1'>商品画像:</label>
+                    <input ref='upfile' type='file' id='itemPic1'>
                 </div>
 
             </div>
         </form>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <!-- 前段のフォームで入力した店舗情報のプレビュー -->
+        <div>
+            <p>プレビュー</p>
+            <p>{{itemName1}} : {{itemPrice1}} 円</p>
 
 
-        <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
-        <script src='js/StoreCreate.js'></script>
-        <!-- Firebaseへ接続 -->
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+            <!-- <img v-bind:src='' alt='店舗画像'> -->
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
 
-        <!-- TODO: Add SDKs for Firebase products that you want to use
+
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src='js/MenuCreate.js'></script>
+    <!-- Firebaseへ接続 -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
              https://firebase.google.com/docs/web/setup#available-libraries -->
-        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
 
-        <script>
-            // Your web app's Firebase configuration
-            var firebaseConfig = {
-                apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
-                authDomain: "transmenu-98803.firebaseapp.com",
-                databaseURL: "https://transmenu-98803.firebaseio.com",
-                projectId: "transmenu-98803",
-                storageBucket: "transmenu-98803.appspot.com",
-                messagingSenderId: "1003433484012",
-                appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
-                measurementId: "G-KZBKDT9WYL"
-            };
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
+            authDomain: "transmenu-98803.firebaseapp.com",
+            databaseURL: "https://transmenu-98803.firebaseio.com",
+            projectId: "transmenu-98803",
+            storageBucket: "transmenu-98803.appspot.com",
+            messagingSenderId: "1003433484012",
+            appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
+            measurementId: "G-KZBKDT9WYL"
+        };
 
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-            // Firebaseと接続できてるかチェック
-            // console.log(firebase);
+        // Firebaseと接続できてるかチェック
+        // console.log(firebase);
 
-            // FirestoreのstoresコレクションをstoreDBオブジェクトとして定義
-            var storeDB = firebase.firestore().collection('stores');
+        // FirestoreのstoresコレクションをstoreDBオブジェクトとして定義
+        var storeDB = firebase.firestore().collection('stores');
+        var itemDB = firebase.firestore().collection('items');
 
-        </script>
+    </script>
 
 </body>
 
@@ -81,7 +92,5 @@
 
 <!-- 
 memo
-・次はfirestoreへの接続をやる！！
-・カラーは省くかも
-・できればプレビューのところで、作成ずみの店舗イメージが見せられるといいなー。iPhoneのベゼル作って、それぞれをそれっぽく配置して。
+
 -->
