@@ -2,13 +2,11 @@ new Vue({
     el: '#app',
     data: function () {
         return {
-            storeName: '',
-            storePicPath: '',
-            storeColor: '',
+
         };
     },
     methods: {
-        //店舗画像をアップロードする
+        //アイテム画像をプレビューする
         previewStorePic: function () {
             const files = this.$refs.upfile;
             const fileImg = files.files[0];

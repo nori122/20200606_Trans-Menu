@@ -9,78 +9,71 @@
 
 <body>
     <div id='app'>
-        <h1>店舗登録</h1>
+        <h1>メニュー登録</h1>
 
         <!-- 店舗名、カラー、画像をアップロードするための入力フォーム -->
         <form action=''>
-            <div>
-                <label for='store-name'>店舗名:</label>
-                <input type='text' id='store-name' v-model='storeName' placeholder='店舗名を入力'>
-            </div>
-            <div>
-                <label for='store-color'>店舗のイメージカラー:</label>
-                <input type='color' id='store-color' v-model='storeColor'>
-            </div>
-            <div>
-                <label for='storePic'>店舗画像:</label>
-                <input ref='upfile' type='file' id='storePic' v-on:change='previewStorePic'>
+            <div>商品1
+                <div>
+                    <label for='item1name'>商品名:</label>
+                    <input type='text' id='item1name' v-model='item1Name' placeholder='店舗名を入力'>
+                </div>
+                <div>
+                    <label for=''>値段</label>
+                    <input type='number'>
+                </div>
+                <div>
+                    <label for=' item1Pic'>商品画像:</label>
+                    <input ref='upfile' type='file' id='item1Pic' v-on:change='previewitem1Pic'>
+                </div>
+
             </div>
         </form>
 
-
-        <!-- 前段のフォームで入力した店舗情報のプレビュー -->
-        <div>
-            <p>プレビュー</p>
-            <p>{{storeName}}</p>
-            <img v-bind:src='storePicPath' alt='店舗画像'>
-        </div>
-
-
-        <!-- 前段のフォームで入力した店舗情報をFireBaseに登録する -->
-        <div>
-            <button v-on:click='pushStoreToDB' id="pushStoreToDB">店舗情報の登録</button>
-        </div>
-        <div>
-            <button v-on:click='moveToMenuCreate'>商品登録へすすむ</button>
-        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
 
-    </div>
+        <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+        <script src='js/StoreCreate.js'></script>
+        <!-- Firebaseへ接続 -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
 
-    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
-    <script src='js/StoreCreate.js'></script>
-    <!-- Firebaseへ接続 -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
+        <!-- TODO: Add SDKs for Firebase products that you want to use
              https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
-            authDomain: "transmenu-98803.firebaseapp.com",
-            databaseURL: "https://transmenu-98803.firebaseio.com",
-            projectId: "transmenu-98803",
-            storageBucket: "transmenu-98803.appspot.com",
-            messagingSenderId: "1003433484012",
-            appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
-            measurementId: "G-KZBKDT9WYL"
-        };
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
+                authDomain: "transmenu-98803.firebaseapp.com",
+                databaseURL: "https://transmenu-98803.firebaseio.com",
+                projectId: "transmenu-98803",
+                storageBucket: "transmenu-98803.appspot.com",
+                messagingSenderId: "1003433484012",
+                appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
+                measurementId: "G-KZBKDT9WYL"
+            };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
 
-        // Firebaseと接続できてるかチェック
-        // console.log(firebase);
+            // Firebaseと接続できてるかチェック
+            // console.log(firebase);
 
-        // FirestoreのstoresコレクションをstoreDBオブジェクトとして定義
-        var storeDB = firebase.firestore().collection('stores');
+            // FirestoreのstoresコレクションをstoreDBオブジェクトとして定義
+            var storeDB = firebase.firestore().collection('stores');
 
-    </script>
+        </script>
 
 </body>
 
