@@ -89,7 +89,7 @@ new Vue({
                         // itemPrice4: this.itemPrice4,
                         // itemPicPath4: url,
                     });
-                    alert("画像登録が完了しました")
+                    // alert("画像登録が完了しました")
 
                 })
 
@@ -155,6 +155,11 @@ new Vue({
 
                 })
 
+        },
+
+        //'StorePath.html'に遷移
+        moveToStorePath: function () {
+            location.href = 'StorePath.html';
         },
     }
 });

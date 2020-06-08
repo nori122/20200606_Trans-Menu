@@ -17,11 +17,6 @@ new Vue({
             }
         },
 
-        //'MenuCreate.html'に遷移
-        moveToMenuCreate: function () {
-            location.href = 'MenuCreate.html';
-        },
-
         //フォームの入力内容をCloud Firestoreとstorageに送信
         pushStoreToDB: function () {
 
@@ -50,6 +45,11 @@ new Vue({
                     });
                 })
 
+        },
+
+        //'MenuCreate.html'に遷移
+        moveToMenuCreate: function () {
+            location.href = 'MenuCreate.html';
         },
 
 
