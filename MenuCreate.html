@@ -30,11 +30,31 @@
 
             </div>
         </form>
+        <br><br><br>
+        <form action=''>
+            <div>商品2
+                <div>
+                    <label>商品名:</label>
+                    <input type='text' v-model='itemName2' placeholder='商品名を入力'>
+                </div>
+                <div>
+                    <label for=''>値段:</label>
+                    <input type='number' v-model='itemPrice2' placeholder='値段を入力'>
+                    円
+                </div>
+                <div>
+                    <label for=' itemPic2'>商品画像:</label>
+                    <input ref='upfile' type='file' id='itemPic2'>
+                </div>
+
+            </div>
+        </form>
 
         <!-- 前段のフォームで入力した店舗情報のプレビュー -->
         <div>
             <p>プレビュー</p>
             <p>{{itemName1}} : {{itemPrice1}} 円</p>
+            <p>{{itemName2}} : {{itemPrice2}} 円</p>
 
             <!-- イメージプレビューのバインディングがうまくいかない。
             店舗情報のときはコピペだったので、理解が必要 
@@ -43,11 +63,12 @@
 
             <!-- アップロードした画像を描写する。妥協案 -->
             <img src='' alt='item画像1' id='itemPreview1'>
+            <img src='' alt='item画像2' id='itemPreview2'>
         </div>
 
         <!-- 前段のフォームで入力した商品情報をFireBaseに登録する -->
         <div>
-            <button v-on:click='pushItemToDB' id="pushItemToDB">店舗情報の登録</button>
+            <button v-on:click='pushItemsToDB' id="pushItemsToDB">店舗情報の登録</button>
         </div>
 
         <br>
