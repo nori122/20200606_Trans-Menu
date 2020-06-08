@@ -9,10 +9,14 @@
 
 <body>
     <div id='app'>
+
+        <!-- 店舗情報 -->
         <h1>{{storeName}}</h1>
         <img alt='' v-bind:src=storePicPath>
+
+        <!-- 商品情報 -->
         <div class='items'>
-            <div>
+            <div>{{itemName1}}
                 <img src='' alt=''>
                 <div>ItemName1 Price1</div>
             </div>
@@ -31,8 +35,6 @@
 
         </div>
     </div>
-
-
 
 
 
@@ -94,8 +96,11 @@
         //     console.log(querySnapshot.docs[0].id)
         // });
 
+        //選択された店舗名を代入する。localStorageとかで渡すか？
+        const selectedStore = 'Avostand';
+
         //storeNameで指定して取得
-        storeDB.where("storeName", "==", 'aaa')
+        storeDB.where("storeName", "==", selectedStore)
             .get()
             .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
@@ -115,7 +120,7 @@
                                 storeColor: '',
 
                                 //メニュー情報
-                                itemName1: '',
+                                itemName1: doc.data().iteminfo.itemName1,
                                 itemPrice1: '',
                                 itemPicPath1: '',
                                 itemName2: '',

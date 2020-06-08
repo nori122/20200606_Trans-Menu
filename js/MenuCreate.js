@@ -47,13 +47,20 @@ new Vue({
                     image.src = url
 
                     //Cloud Firestoreに店舗名と画像URLを追加
-                    itemDB.add({
-                        itemName1: this.itemName1,
-                        itemPrice1: this.itemPrice1,
-                        itemPicPath1: url,
+                    // itemDB.add({
+                    //     itemName1: this.itemName1,
+                    //     itemPrice1: this.itemPrice1,
+                    //     itemPicPath1: url,
+                    // });
+                    storeDB.doc('9AMIMp58hA9yIJFMZKSl').update({
+                        iteminfo1:
+                        {
+                            itemName1: this.itemName1,
+                            itemPrice1: this.itemPrice1,
+                            itemPicPath1: url,
+                        },
                     });
                 })
-
         },
 
         //item2の登録
@@ -76,20 +83,14 @@ new Vue({
                     image.src = url
 
                     //Cloud Firestoreに店舗名と画像URLを追加
-                    itemDB.add({
-                        itemName2: this.itemName2,
-                        itemPrice2: this.itemPrice2,
-                        itemPicPath2: url,
-
-                        // itemName3: this.itemName3,
-                        // itemPrice3: this.itemPrice3,
-                        // itemPicPath3: url,
-
-                        // itemName4: this.itemName4,
-                        // itemPrice4: this.itemPrice4,
-                        // itemPicPath4: url,
+                    storeDB.doc('9AMIMp58hA9yIJFMZKSl').update({
+                        iteminfo2:
+                        {
+                            itemName2: this.itemName2,
+                            itemPrice2: this.itemPrice2,
+                            itemPicPath2: url,
+                        },
                     });
-                    // alert("画像登録が完了しました")
 
                 })
 
@@ -117,10 +118,13 @@ new Vue({
                     image.src = url
 
                     //Cloud Firestoreに店舗名と画像URLを追加
-                    itemDB.add({
-                        itemName3: this.itemName3,
-                        itemPrice3: this.itemPrice3,
-                        itemPicPath3: url,
+                    storeDB.doc('9AMIMp58hA9yIJFMZKSl').update({
+                        iteminfo3:
+                        {
+                            itemName3: this.itemName3,
+                            itemPrice3: this.itemPrice3,
+                            itemPicPath3: url,
+                        },
                     });
                 })
 
@@ -146,11 +150,16 @@ new Vue({
                     image.src = url
 
                     //Cloud Firestoreに店舗名と画像URLを追加
-                    itemDB.add({
-                        itemName4: this.itemName4,
-                        itemPrice4: this.itemPrice4,
-                        itemPicPath4: url,
+                    storeDB.doc('9AMIMp58hA9yIJFMZKSl').update({
+                        iteminfo4:
+                        {
+                            itemName4: this.itemName4,
+                            itemPrice4: this.itemPrice4,
+                            itemPicPath4: url,
+                        },
                     });
+
+                    //完了alert
                     alert("画像登録が完了しました")
 
                 })
