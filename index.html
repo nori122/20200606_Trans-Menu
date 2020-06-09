@@ -1,31 +1,200 @@
 <!DOCTYPE html>
 <html lang='ja'>
 
+
 <head>
+    <!-- vuetifyのstylesheet-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <!-- メタデータ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Trans Menu</title>
 </head>
 
+
+
+<!-- ------------------------------- -->
+<!-- HTML                            -->
+<!-- ------------------------------- -->
+
 <body>
-    <div id='app'>
+    <!-- <div id='app'>
         <h1>Trans Menu</h1>
         <p>レストランメニュー多言語化サービス</p>
         <button v-on:click='moveToStoreCreate'>メニューを作る</button>
         <button v-on:click='moveToStoreList'>店舗一覧</button>
+
+        <v-app>
+            <v-content>
+                <v-container>Hello world</v-container>
+            </v-content>
+        </v-app>
+
+    </div> -->
+    <div id="app">
+        <v-app id="inspire">
+            <v-app id="inspire">
+
+                <!-- ナビゲーションドロワー -->
+                <v-navigation-drawer v-model="drawer" app right>
+                    <v-list dense>
+                        <v-list-item link v-on:click='moveToStoreCreate'>
+                            <v-list-item-action>
+                                <v-icon>mdi-home</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>トップ</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link v-on:click='moveToStoreCreate'>
+                            <v-list-item-action>
+                                <v-icon>mdi-format-list-bulleted</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>店舗一覧</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-email</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>お問い合わせ</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                </v-navigation-drawer>
+
+                <!-- アップバー -->
+                <v-app-bar app color="cyan" dark>
+                    <v-toolbar-title>Trans Menu</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                </v-app-bar>
+
+                <!-- カルーセル -->
+                <template>
+                    <v-carousel cycle interval="4500" height="500">
+                        <v-carousel-item v-for="(item,i) in carouselPics" :key="i" :src="item.src"></v-carousel-item>
+                    </v-carousel>
+                </template>
+
+
+                <!-- コンテンツ -->
+                <v-content class="pa-8">
+                    <v-container class="fill-height" fluid>
+                        <v-layout column align-center>
+                            <!-- ダイアログ -->
+                            <v-dialog v-model="dialog" width="500">
+                                <template v-slot:activator="{ on, attrs }">
+                                    <v-btn width="180" color="cyan" dark v-on="on">
+                                        Trans Menuとは？
+                                    </v-btn>
+                                </template>
+
+                                <v-card>
+                                    <v-card-title class="headline grey lighten-2" primary-title>
+                                        Trans Menuとは？
+                                    </v-card-title>
+
+                                    <v-card-text class="pa-4 v-card-text">
+                                        TransMenuは、あなたのレストランのメニューを即座に多言語化するサービスです。<br>多言語化されたメニューは、オンラインで公開され、お客さんは自分のスマホからアクセスすることができます。<br>
+
+                                    </v-card-text>
+
+                                    <v-divider></v-divider>
+
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn color="primary" text @click="dialog = false">
+                                            使ってみる
+                                        </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-dialog>
+
+                            <!-- ボタン -->
+                            <v-btn href="storeCreate.html" width="180" class="white--text ma-4 red lighten-2">メニューをつくる
+                            </v-btn>
+
+
+                        </v-layout>
+                    </v-container>
+                </v-content>
+
+
+
+
+                <!-- フッター -->
+                <v-footer color="cyan" app>
+                    <v-spacer></v-spacer>
+                    <span class="white--text">&copy; 2020 Trans Menu</span>
+                </v-footer>
+
+
+            </v-app>
+        </v-app>
     </div>
 
 
 
+    <!-- ------------------------------- -->
+    <!-- 設定ファイル                      -->
+    <!-- ------------------------------- -->
 
-    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
-    <script src='js/index.js'></script>
+    <!-- <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script> -->
+    <!-- <script src='js/index.js'></script> -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            name: 'LayoutsDemosBaselineFlipped',
+            props: {
+                source: String,
+            },
+            data: () => ({
+                drawer: null,
+                dialog: false,
+                carouselPics: [
+                    { src: 'img/menus/menu.jpg', },
+                    { src: 'img/menus/menu2.jpg' },
+                    { src: 'img/menus/menu3.jpg' },
+                    { src: 'img/menus/menu4.jpg' },
+                ],
+            }),
+            methods: {
+                //'StoreCreate.html'に遷移
+                moveToStoreCreate: function () {
+                    location.href = 'StoreCreate.html';
+                },
+                //'StoreList.html'に遷移
+                moveToStoreList: function () {
+                    location.href = 'https://www.google.com/'
+                }
+            }
+        })
+    </script>
+
+
+
+    <!-- ------------------------------- -->
+    <!-- firebase                        -->
+    <!-- ------------------------------- -->
+
     <!-- Firebaseへ接続 -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
 
     <script>
@@ -42,8 +211,9 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
     </script>
+
+
 </body>
 
 </html>
