@@ -74,104 +74,209 @@
                     <!-- 商品名、値段、商品画像をアップロードするための入力フォーム -->
                     <!-- 商品1 -->
                     <form>
-                        <div>商品1
+                        <v-card color="#E3F2FD" class="ma-6">
+                            <v-card-title>商品1</v-card-title>
                             <div>
-                                <input type='text' v-model='itemName1' placeholder='商品名を入力'>
+                                <!-- <input type='text' v-model='itemName1' placeholder='商品名を入力'> -->
+                                <v-text-field class="ml-8 mr-5" v-model="itemName1" label="商品名" required>
+                                </v-text-field>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <input type='number' v-model='itemPrice1' placeholder='値段を入力'>
                                 円
-                            </div>
+                            </div> -->
                             <div>
-                                <input ref='upfile' type='file' id='itemPic1'>
+                                <v-text-field style="width:70%;" class="ml-8 mb-n7" v-model="itemPrice1" label="値段"
+                                    required single-line solo>
+                                </v-text-field>
                             </div>
 
-                        </div>
+                            <!-- <div>
+                                <input ref='upfile' type='file' id='itemPic1'>
+                            </div> -->
+                            <template>
+                                <div>
+                                    <v-file-input class="mr-5" chips multiple label="店舗画像" id='itemPic1'>
+                                    </v-file-input>
+                                </div>
+                            </template>
+
+
+                        </v-card>
                     </form>
-                    <br><br><br>
+
                     <!-- 商品2 -->
                     <form>
-                        <div>商品2
+                        <v-card color="#E3F2FD" class="ma-6">
+                            <v-card-title>商品2</v-card-title>
                             <div>
-                                <input type='text' v-model='itemName2' placeholder='商品名を入力'>
+                                <!-- <input type='text' v-model='itemName2' placeholder='商品名を入力'> -->
+                                <v-text-field class="ml-8 mr-5" v-model="itemName2" label="商品名" required>
+                                </v-text-field>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <input type='number' v-model='itemPrice2' placeholder='値段を入力'>
                                 円
-                            </div>
+                            </div> -->
                             <div>
-                                <input ref='upfile' type='file' id='itemPic2'>
+                                <v-text-field style="width:70%;" class="ml-8 mb-n7" v-model="itemPrice2" label="値段"
+                                    required single-line solo>
+                                </v-text-field>
                             </div>
 
-                        </div>
+                            <!-- <div>
+                                <input ref='upfile' type='file' id='itemPic2'>
+                            </div> -->
+                            <template>
+                                <div>
+                                    <v-file-input class="mr-5" chips multiple label="店舗画像" id='itemPic2'>
+                                    </v-file-input>
+                                </div>
+                            </template>
+
+                        </v-card>
                     </form>
-                    <br><br><br>
+
                     <!-- 商品3 -->
                     <form>
-                        <div>商品3
+                        <v-card color="#E3F2FD" class="ma-6">
+                            <v-card-title>商品3</v-card-title>
                             <div>
-                                <input type='text' v-model='itemName3' placeholder='商品名を入力'>
+                                <!-- <input type='text' v-model='itemName3' placeholder='商品名を入力'> -->
+                                <v-text-field class="ml-8 mr-5" v-model="itemName3" label="商品名" required>
+                                </v-text-field>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <input type='number' v-model='itemPrice3' placeholder='値段を入力'>
                                 円
-                            </div>
+                            </div> -->
                             <div>
-                                <input ref='upfile' type='file' id='itemPic3'>
+                                <v-text-field style="width:70%;" class="ml-8 mb-n7" v-model="itemPrice3" label="値段"
+                                    required single-line solo>
+                                </v-text-field>
                             </div>
-
-                        </div>
+                            <!-- <div>
+                                <input ref='upfile' type='file' id='itemPic3'>
+                            </div> -->
+                            <template>
+                                <div>
+                                    <v-file-input class="mr-5" chips multiple label="店舗画像" id='itemPic3'>
+                                    </v-file-input>
+                                </div>
+                            </template>
+                        </v-card>
                     </form>
-                    <br><br><br>
+
                     <!-- 商品4 -->
                     <form>
-                        <div>商品4
+                        <v-card color="#E3F2FD" class="ma-6">
+                            <v-card-title>商品4</v-card-title>
                             <div>
-                                <input type='text' v-model='itemName4' placeholder='商品名を入力'>
+                                <!-- <input type='text' v-model='itemName4' placeholder='商品名を入力'> -->
+                                <v-text-field class="ml-8 mr-5" v-model="itemName4" label="商品名" required>
+                                </v-text-field>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <input type='number' v-model='itemPrice4' placeholder='値段を入力'>
                                 円
-                            </div>
+                            </div> -->
                             <div>
-                                <input ref='upfile' type='file' id='itemPic4'>
+                                <v-text-field style="width:70%;" class="ml-8 mb-n7" v-model="itemPrice4" label="値段"
+                                    required single-line solo>
+                                </v-text-field>
                             </div>
-
-                        </div>
+                            <!-- <div>
+                                <input ref='upfile' type='file' id='itemPic4'>
+                            </div> -->
+                            <template>
+                                <div>
+                                    <v-file-input class="mr-5" chips multiple label="店舗画像" id='itemPic4'>
+                                    </v-file-input>
+                                </div>
+                            </template>
+                        </v-card>
                     </form>
-                    <br><br><br>
+
 
 
 
                     <!-- 前段のフォームで入力した店舗情報のプレビュー -->
-                    <div>
+                    <!-- <div>
                         <p>プレビュー</p>
                         <p>{{itemName1}} : {{itemPrice1}} 円</p>
                         <p>{{itemName2}} : {{itemPrice2}} 円</p>
                         <p>{{itemName3}} : {{itemPrice3}} 円</p>
-                        <p>{{itemName4}} : {{itemPrice4}} 円</p>
+                        <p>{{itemName4}} : {{itemPrice4}} 円</p> -->
 
-                        <!-- イメージプレビューのバインディングがうまくいかない。
-                店舗情報のときはコピペだったので、理解が必要 
-                 可能ならこのプレビューのクオリティをあげたい-->
-                        <!-- <img v-bind:src='' alt='店舗画像'> -->
+                    <!-- イメージプレビューのバインディングがうまくいかない。
+                    店舗情報のときはコピペだったので、理解が必要 
+                     可能ならこのプレビューのクオリティをあげたい-->
+                    <!-- <img v-bind:src='' alt='店舗画像'> -->
 
-                        <!-- アップロードした画像を描写する。妥協案 -->
-                        <img src='' alt='item画像1' id='itemPreview1'>
-                        <img src='' alt='item画像2' id='itemPreview2'>
-                        <img src='' alt='item画像3' id='itemPreview3'>
-                        <img src='' alt='item画像4' id='itemPreview4'>
-                    </div>
+                    <!-- アップロードした画像を描写する。妥協案 -->
+                    <!-- <img src='' alt='item画像1' id='itemPreview1'>
+                    <img src='' alt='item画像2' id='itemPreview2'>
+                    <img src='' alt='item画像3' id='itemPreview3'>
+                    <img src='' alt='item画像4' id='itemPreview4'> -->
+                    <!-- </div> -->
 
                     <!-- 前段のフォームで入力した商品情報をFireBaseに登録する -->
-                    <div>
+                    <!-- <div>
                         <button v-on:click='pushItemsToDB' id="pushItemsToDB">メニュー情報の登録</button>
-                    </div>
+                    </div> -->
 
                     <!-- StorePathへ遷移 -->
-                    <div>
+                    <!-- <div>
                         <button v-on:click='moveToStorePath'>メニューサイトを作る</button>
-                    </div>
+                    </div> -->
+
+                    <v-content>
+                        <v-container class="mt-n5 mb-5 fill-height" fluid>
+
+                            <v-col class="text-center">
+                                <v-btn class="red lighten-3 white--text" v-on:click='pushItemsToDB' id="pushItemsToDB">
+                                    メニュー情報の登録
+                                </v-btn>
+                            </v-col>
+
+                            <v-col class="text-center">
+                                <!-- <v-btn class="red lighten-2 white--text" v-on:click='moveToStorePath'>メニューサイトを作る
+                                    </v-btn> -->
+                                <v-btn :disabled="dialog" :loading="dialog" class="red lighten-2 white--text"
+                                    @click="dialog=true" v-on:mouseout="moveToStorePath">
+                                    メニューサイトを作る
+                                </v-btn>
+
+                                <v-dialog v-model="dialog" hide-overlay persistent width="300">
+                                    <v-card color="red darken-1" dark>
+                                        <v-card-text>
+                                            メニュー作成中
+                                            <v-progress-linear indeterminate stream buffer-value="0" color="white"
+                                                class="mb-0">
+                                            </v-progress-linear>
+                                        </v-card-text>
+                                    </v-card>
+                                </v-dialog>
+                            </v-col>
+
+                            <v-col class="text-center">
+                                <v-btn class="red white--text" @click="moveToStorePath">
+                                    メニューサイトの表示
+                                </v-btn>
+
+                            </v-col>
+
+                        </v-container>
+                    </v-content>
+
+
+
+
+
+
+                </v-content>
+
+
 
                 </v-content>
 
@@ -219,6 +324,7 @@
             },
             data: () => ({
                 drawer: null,
+                dialog: false,
                 itemName1: '',
                 itemPrice1: '',
                 itemPicPath1: '',
@@ -233,6 +339,13 @@
                 itemPicPath4: '',
 
             }),
+            watch: {
+                dialog(val) {
+                    if (!val) return
+
+                    setTimeout(() => (this.dialog = false), 4000)
+                },
+            },
             methods: {
                 //'StoreCreate.html'に遷移
                 moveToStoreCreate: function () {
@@ -389,7 +502,9 @@
 
                 //'StorePath.html'に遷移
                 moveToStorePath: function () {
+
                     location.href = 'StorePath.html';
+
                 },
             }
         })

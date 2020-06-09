@@ -68,18 +68,21 @@
                     <p class="mx-5">あなたのレストランの店名、店舗画像を登録してください</p>
 
                     <!-- 店舗名、カラー、画像をアップロードするための入力フォーム -->
-                    <form>
+                    <v-card color="#E3F2FD" class="ma-2 pt-7 pb-7">
 
-                        <v-text-field class="ml-8 mr-5" v-model="storeName" label="店名を入力してください" required>
-                        </v-text-field>
+                        <form>
 
-                        <template>
-                            <div>
-                                <v-file-input class="mr-5" chips multiple label="店舗画像をアップロードしてください" id='storePic'>
-                                </v-file-input>
-                            </div>
-                        </template>
-                    </form>
+                            <v-text-field class="ml-8 mr-5" v-model="storeName" label="店名を入力してください" required>
+                            </v-text-field>
+
+                            <template>
+                                <div>
+                                    <v-file-input class="mr-5" chips multiple label="店舗画像をアップロードしてください" id='storePic'>
+                                    </v-file-input>
+                                </div>
+                            </template>
+                        </form>
+                    </v-card>
 
 
                     <!-- <div>
@@ -111,10 +114,13 @@
                         <v-container class="fill-height" fluid>
                             <v-row justify="center">
                                 <v-col class="text-center">
-                                    <v-btn v-on:click='pushStoreToDB' id="pushStoreToDB">店舗情報の登録</v-btn>
+                                    <v-btn v-on:click='pushStoreToDB' id="pushStoreToDB">
+                                        店舗情報の登録
+                                    </v-btn>
                                 </v-col>
                                 <v-col class="text-center">
-                                    <v-btn v-on:click='moveToMenuCreate'>商品登録へすすむ</v-btn>
+                                    <v-btn class="red lighten-2 white--text" v-on:click='moveToMenuCreate'>商品登録へすすむ
+                                    </v-btn>
                                 </v-col>
                             </v-row>
                         </v-container>
