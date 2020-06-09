@@ -2,48 +2,122 @@
 <html lang='ja'>
 
 <head>
-    <meta charset='UTF-8'>
+    <!-- vuetifyのstylesheet-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <!-- メタデータ -->
+    <meta charset='UTF-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <title>Trans Menu</title>
 </head>
 
+
+
+<!-- ------------------------------- -->
+<!-- HTML                            -->
+<!-- ------------------------------- -->
+
 <body>
     <div id="app">
+        <v-app id="inspire">
+            <v-app id="inspire">
 
-        <v-app>
-            <v-card class="mt-4 d-flex flex-column justify-center align-center pa-2" outlined tile>
-                <p>メニュー用サイトが作成されました!</p>
-                <p>Your site has been successfully created.</p>
-                <!-- QRコード -->
-                <img class="ma-auto" src='img/qr_site_top.png' alt=''>
-                <!-- URL -->
-                <a href='CreatedStore.html'>CreatedStore.html</a>
-            </v-card>
+                <!-- ナビゲーションドロワー -->
+                <v-navigation-drawer v-model="drawer" app right>
+                    <v-list dense>
+                        <v-list-item link v-on:click='moveToStoreCreate'>
+                            <v-list-item-action>
+                                <v-icon>mdi-home</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>トップ</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link v-on:click='moveToStoreCreate'>
+                            <v-list-item-action>
+                                <v-icon>mdi-format-list-bulleted</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>店舗一覧</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-email</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>お問い合わせ</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                </v-navigation-drawer>
+
+                <!-- アップバー -->
+                <v-app-bar app color="cyan" dark>
+                    <v-toolbar-title>Trans Menu</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                </v-app-bar>
+
+                <!-- コンテンツ -->
+                <v-content>
+                    <v-app>
+                        <v-card class="mt-4 d-flex flex-column justify-center align-center pa-2" outlined tile>
+                            <p>メニュー用サイトが作成されました!</p>
+                            <p>Your site has been successfully created.</p>
+                            <!-- QRコード -->
+                            <img class="ma-auto" src='img/qr_site_top.png' alt=''>
+                            <!-- URL -->
+                            <a href='CreatedStore.html'>CreatedStore.html</a>
+                        </v-card>
+                    </v-app>
+
+
+                    <!-- フッター -->
+                    <v-footer color="cyan" app>
+                        <v-spacer></v-spacer>
+                        <span class="white--text">&copy; 2020 Trans Menu</span>
+                    </v-footer>
+                </v-content>
+
+            </v-app>
         </v-app>
-
-
-
     </div>
 
 
 
 
+    <!-- ------------------------------- -->
+    <!-- 設定ファイル                      -->
+    <!-- ------------------------------- -->
 
-    <!-- Vuetifyのscript -->
+    <!-- <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script> -->
+    <!-- <script src='js/index.js'></script> -->
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 
 
-    <!-- 当htmlファイルのスクリプト -->
+    <!-- ------------------------------- -->
+    <!-- javascript, Vue.js              -->
+    <!-- ------------------------------- -->
+
+
     <script>
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
+            name: 'LayoutsDemosBaselineFlipped',
+            props: {
+                source: String,
+            },
             data() {
                 return {
+                    drawer: null,
                 }
             },
             methods: {
@@ -52,20 +126,43 @@
                 },
                 openSiteTop: function () {
                     location.href = "site_top.html";
+                },
+                //'StoreCreate.html'に遷移
+                moveToStoreCreate: function () {
+                    location.href = 'StoreCreate.html';
+                },
+                //'StoreList.html'に遷移
+                moveToStoreList: function () {
+                    location.href = 'https://www.google.com/'
                 }
+
             }
         });
     </script>
+    <!-- ------------------------------- -->
+    <!-- firebase                        -->
+    <!-- ------------------------------- -->
 
-    <!-- loadingのscript -->
+    <!-- Firebaseへ接続 -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
 
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
+            authDomain: "transmenu-98803.firebaseapp.com",
+            databaseURL: "https://transmenu-98803.firebaseio.com",
+            projectId: "transmenu-98803",
+            storageBucket: "transmenu-98803.appspot.com",
+            messagingSenderId: "1003433484012",
+            appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
+            measurementId: "G-KZBKDT9WYL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 
-
-    <!-- vueのスクリプト？ -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </body>
 
 </html>
