@@ -28,7 +28,7 @@
                 <!-- ナビゲーションドロワー -->
                 <v-navigation-drawer v-model="drawer" app right>
                     <v-list dense>
-                        <v-list-item link v-on:click='moveToStoreCreate'>
+                        <v-list-item href="index.html">
                             <v-list-item-action>
                                 <v-icon>mdi-home</v-icon>
                             </v-list-item-action>
@@ -36,15 +36,15 @@
                                 <v-list-item-title>トップ</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
-                        <v-list-item link v-on:click='moveToStoreCreate'>
+                        <v-list-item href="StoreCreate.html">
                             <v-list-item-action>
                                 <v-icon>mdi-format-list-bulleted</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
-                                <v-list-item-title>店舗一覧</v-list-item-title>
+                                <v-list-item-title>メニュー作成</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
-                        <v-list-item link>
+                        <v-list-item>
                             <v-list-item-action>
                                 <v-icon>mdi-email</v-icon>
                             </v-list-item-action>
@@ -57,7 +57,7 @@
 
                 <!-- アップバー -->
                 <v-app-bar app color="cyan" dark>
-                    <v-toolbar-title>Trans Menu</v-toolbar-title>
+                    <v-toolbar-title class="headline">Trans Menu</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 </v-app-bar>
@@ -67,24 +67,22 @@
 
 
                 <v-content>
+                    <br>
+                    <p class="mx-5">あなたのレストランのメニューを登録してください</p>
 
-                    <h1>メニュー登録</h1>
 
                     <!-- 商品名、値段、商品画像をアップロードするための入力フォーム -->
                     <!-- 商品1 -->
-                    <form action=''>
+                    <form>
                         <div>商品1
                             <div>
-                                <label>商品名:</label>
                                 <input type='text' v-model='itemName1' placeholder='商品名を入力'>
                             </div>
                             <div>
-                                <label for=''>値段:</label>
                                 <input type='number' v-model='itemPrice1' placeholder='値段を入力'>
                                 円
                             </div>
                             <div>
-                                <label for=' itemPic1'>商品画像:</label>
                                 <input ref='upfile' type='file' id='itemPic1'>
                             </div>
 
@@ -92,19 +90,16 @@
                     </form>
                     <br><br><br>
                     <!-- 商品2 -->
-                    <form action=''>
+                    <form>
                         <div>商品2
                             <div>
-                                <label>商品名:</label>
                                 <input type='text' v-model='itemName2' placeholder='商品名を入力'>
                             </div>
                             <div>
-                                <label for=''>値段:</label>
                                 <input type='number' v-model='itemPrice2' placeholder='値段を入力'>
                                 円
                             </div>
                             <div>
-                                <label for=' itemPic2'>商品画像:</label>
                                 <input ref='upfile' type='file' id='itemPic2'>
                             </div>
 
@@ -112,19 +107,16 @@
                     </form>
                     <br><br><br>
                     <!-- 商品3 -->
-                    <form action=''>
+                    <form>
                         <div>商品3
                             <div>
-                                <label>商品名:</label>
                                 <input type='text' v-model='itemName3' placeholder='商品名を入力'>
                             </div>
                             <div>
-                                <label for=''>値段:</label>
                                 <input type='number' v-model='itemPrice3' placeholder='値段を入力'>
                                 円
                             </div>
                             <div>
-                                <label for=' itemPic3'>商品画像:</label>
                                 <input ref='upfile' type='file' id='itemPic3'>
                             </div>
 
@@ -132,19 +124,16 @@
                     </form>
                     <br><br><br>
                     <!-- 商品4 -->
-                    <form action=''>
+                    <form>
                         <div>商品4
                             <div>
-                                <label>商品名:</label>
                                 <input type='text' v-model='itemName4' placeholder='商品名を入力'>
                             </div>
                             <div>
-                                <label for=''>値段:</label>
                                 <input type='number' v-model='itemPrice4' placeholder='値段を入力'>
                                 円
                             </div>
                             <div>
-                                <label for=' itemPic4'>商品画像:</label>
                                 <input ref='upfile' type='file' id='itemPic4'>
                             </div>
 

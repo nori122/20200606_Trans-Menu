@@ -28,7 +28,7 @@
                 <!-- ナビゲーションドロワー -->
                 <v-navigation-drawer v-model="drawer" app right>
                     <v-list dense>
-                        <v-list-item link v-on:click='moveToStoreCreate'>
+                        <v-list-item href="index.html">
                             <v-list-item-action>
                                 <v-icon>mdi-home</v-icon>
                             </v-list-item-action>
@@ -36,15 +36,15 @@
                                 <v-list-item-title>トップ</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
-                        <v-list-item link v-on:click='moveToStoreCreate'>
+                        <v-list-item href="StoreCreate.html">
                             <v-list-item-action>
                                 <v-icon>mdi-format-list-bulleted</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
-                                <v-list-item-title>店舗一覧</v-list-item-title>
+                                <v-list-item-title>メニュー作成</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
-                        <v-list-item link>
+                        <v-list-item>
                             <v-list-item-action>
                                 <v-icon>mdi-email</v-icon>
                             </v-list-item-action>
@@ -57,7 +57,7 @@
 
                 <!-- アップバー -->
                 <v-app-bar app color="cyan" dark>
-                    <v-toolbar-title>Trans Menu</v-toolbar-title>
+                    <v-toolbar-title class="headline">Trans Menu</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 </v-app-bar>

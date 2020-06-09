@@ -25,7 +25,7 @@
                 <!-- ナビゲーションドロワー -->
                 <v-navigation-drawer v-model="drawer" app right>
                     <v-list dense>
-                        <v-list-item link v-on:click='moveToStoreCreate'>
+                        <v-list-item href="index.html">
                             <v-list-item-action>
                                 <v-icon>mdi-home</v-icon>
                             </v-list-item-action>
@@ -33,15 +33,15 @@
                                 <v-list-item-title>トップ</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
-                        <v-list-item link v-on:click='moveToStoreCreate'>
+                        <v-list-item href="StoreCreate.html">
                             <v-list-item-action>
                                 <v-icon>mdi-format-list-bulleted</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
-                                <v-list-item-title>店舗一覧</v-list-item-title>
+                                <v-list-item-title>メニュー作成</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
-                        <v-list-item link>
+                        <v-list-item>
                             <v-list-item-action>
                                 <v-icon>mdi-email</v-icon>
                             </v-list-item-action>
@@ -54,7 +54,7 @@
 
                 <!-- アップバー -->
                 <v-app-bar app color="cyan" dark>
-                    <v-toolbar-title>Trans Menu</v-toolbar-title>
+                    <v-toolbar-title class="headline">Trans Menu</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 </v-app-bar>
@@ -64,49 +64,67 @@
 
 
                 <v-content>
-                    <h1>店舗登録</h1>
+                    <br>
+                    <p class="mx-5">あなたのレストランの店名、店舗画像を登録してください</p>
 
                     <!-- 店舗名、カラー、画像をアップロードするための入力フォーム -->
-                    <form action=''>
-                        <div>
-                            <label for='storeName'>店舗名:</label>
-                            <input type='text' id='storeName' v-model='storeName' placeholder='店舗名を入力'>
-                        </div>
-                        <div>
-                            <label for='storeColor'>店舗のイメージカラー:</label>
-                            <input type='color' id='storeColor' v-model='storeColor'>
-                        </div>
-                        <div>
-                            <label for='storePic'>店舗画像:</label>
-                            <input ref='upfile' type='file' id='storePic' v-on:change='previewStorePic'>
-                        </div>
+                    <form>
+
+                        <v-text-field class="ml-8 mr-5" v-model="storeName" label="店名を入力してください" required>
+                        </v-text-field>
+
+                        <template>
+                            <div>
+                                <v-file-input class="mr-5" chips multiple label="店舗画像をアップロードしてください" id='storePic'>
+                                </v-file-input>
+                            </div>
+                        </template>
                     </form>
 
 
+                    <!-- <div>
+                            <label for='storeName'>店舗名:</label>
+                            <input type='text' id='storeName' placeholder='店舗名を入力'>
+                        </div> -->
+                    <!-- <div>
+                            <label for='storeColor'>店舗のイメージカラー:</label>
+                            <input type='color' id='storeColor' v-model='storeColor'>
+                        </div> -->
+
+
+                    <!-- <div>
+                            <label for='storePic'>店舗画像:</label>
+                            <input ref='upfile' type='file' id='storePic' v-on:change='previewStorePic'>
+                        </div> -->
+
+
                     <!-- 前段のフォームで入力した店舗情報のプレビュー -->
-                    <div>
+                    <!-- <div>
                         <p>プレビュー</p>
                         <p>{{storeName}}</p>
                         <img v-bind:src='storePicPath' alt='店舗画像'>
-                    </div>
+                    </div> -->
 
 
                     <!-- 前段のフォームで入力した店舗情報をFireBaseに登録する -->
-                    <div>
-                        <button v-on:click='pushStoreToDB' id="pushStoreToDB">店舗情報の登録</button>
-                    </div>
-
-                    <!-- MenuCreateへ遷移 -->
-                    <div>
-                        <button v-on:click='moveToMenuCreate'>商品登録へすすむ</button>
-                    </div>
-
+                    <v-content>
+                        <v-container class="fill-height" fluid>
+                            <v-row justify="center">
+                                <v-col class="text-center">
+                                    <v-btn v-on:click='pushStoreToDB' id="pushStoreToDB">店舗情報の登録</v-btn>
+                                </v-col>
+                                <v-col class="text-center">
+                                    <v-btn v-on:click='moveToMenuCreate'>商品登録へすすむ</v-btn>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-content>
                 </v-content>
 
 
 
                 <!-- フッター -->
-                <v-footer color="cyan" app>
+                <v-footer color=" cyan" app>
                     <v-spacer></v-spacer>
                     <span class="white--text">&copy; 2020 Trans Menu</span>
                 </v-footer>
@@ -153,14 +171,14 @@
 
             }),
             methods: {
-                //店舗画像をプレビューする
-                previewStorePic: function () {
-                    const files = this.$refs.upfile;
-                    const fileImg = files.files[0];
-                    if (fileImg.type.startsWith("image/")) {
-                        this.storePicPath = window.URL.createObjectURL(fileImg);
-                    }
-                },
+                // //店舗画像をプレビューする
+                // previewStorePic: function () {
+                //     const files = this.$refs.upfile;
+                //     const fileImg = files.files[0];
+                //     if (fileImg.type.startsWith("image/")) {
+                //         this.storePicPath = window.URL.createObjectURL(fileImg);
+                //     }
+                // },
                 //フォームの入力内容をCloud Firestoreとstorageに送信
                 pushStoreToDB: function () {
 
