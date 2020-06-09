@@ -2,139 +2,420 @@
 <html lang='ja'>
 
 <head>
+    <!-- vuetifyのstylesheet-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <!-- メタデータ -->
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Trans Menu</title>
 </head>
 
+<!-- ------------------------------- -->
+<!-- HTML                            -->
+<!-- ------------------------------- -->
+
+
+
+
 <body>
-    <div id='app'>
-        <h1>メニュー登録</h1>
+    <div id="app">
+        <v-app id="inspire">
+            <v-app id="inspire">
 
-        <!-- 商品名、値段、商品画像をアップロードするための入力フォーム -->
-        <!-- 商品1 -->
-        <form action=''>
-            <div>商品1
-                <div>
-                    <label>商品名:</label>
-                    <input type='text' v-model='itemName1' placeholder='商品名を入力'>
-                </div>
-                <div>
-                    <label for=''>値段:</label>
-                    <input type='number' v-model='itemPrice1' placeholder='値段を入力'>
-                    円
-                </div>
-                <div>
-                    <label for=' itemPic1'>商品画像:</label>
-                    <input ref='upfile' type='file' id='itemPic1'>
-                </div>
+                <!-- ナビゲーションドロワー -->
+                <v-navigation-drawer v-model="drawer" app right>
+                    <v-list dense>
+                        <v-list-item link v-on:click='moveToStoreCreate'>
+                            <v-list-item-action>
+                                <v-icon>mdi-home</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>トップ</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link v-on:click='moveToStoreCreate'>
+                            <v-list-item-action>
+                                <v-icon>mdi-format-list-bulleted</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>店舗一覧</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-email</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>お問い合わせ</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                </v-navigation-drawer>
 
-            </div>
-        </form>
-        <br><br><br>
-        <!-- 商品2 -->
-        <form action=''>
-            <div>商品2
-                <div>
-                    <label>商品名:</label>
-                    <input type='text' v-model='itemName2' placeholder='商品名を入力'>
-                </div>
-                <div>
-                    <label for=''>値段:</label>
-                    <input type='number' v-model='itemPrice2' placeholder='値段を入力'>
-                    円
-                </div>
-                <div>
-                    <label for=' itemPic2'>商品画像:</label>
-                    <input ref='upfile' type='file' id='itemPic2'>
-                </div>
-
-            </div>
-        </form>
-        <br><br><br>
-        <!-- 商品3 -->
-        <form action=''>
-            <div>商品3
-                <div>
-                    <label>商品名:</label>
-                    <input type='text' v-model='itemName3' placeholder='商品名を入力'>
-                </div>
-                <div>
-                    <label for=''>値段:</label>
-                    <input type='number' v-model='itemPrice3' placeholder='値段を入力'>
-                    円
-                </div>
-                <div>
-                    <label for=' itemPic3'>商品画像:</label>
-                    <input ref='upfile' type='file' id='itemPic3'>
-                </div>
-
-            </div>
-        </form>
-        <br><br><br>
-        <!-- 商品4 -->
-        <form action=''>
-            <div>商品4
-                <div>
-                    <label>商品名:</label>
-                    <input type='text' v-model='itemName4' placeholder='商品名を入力'>
-                </div>
-                <div>
-                    <label for=''>値段:</label>
-                    <input type='number' v-model='itemPrice4' placeholder='値段を入力'>
-                    円
-                </div>
-                <div>
-                    <label for=' itemPic4'>商品画像:</label>
-                    <input ref='upfile' type='file' id='itemPic4'>
-                </div>
-
-            </div>
-        </form>
-        <br><br><br>
+                <!-- アップバー -->
+                <v-app-bar app color="cyan" dark>
+                    <v-toolbar-title>Trans Menu</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                </v-app-bar>
 
 
 
-        <!-- 前段のフォームで入力した店舗情報のプレビュー -->
-        <div>
-            <p>プレビュー</p>
-            <p>{{itemName1}} : {{itemPrice1}} 円</p>
-            <p>{{itemName2}} : {{itemPrice2}} 円</p>
-            <p>{{itemName3}} : {{itemPrice3}} 円</p>
-            <p>{{itemName4}} : {{itemPrice4}} 円</p>
 
-            <!-- イメージプレビューのバインディングがうまくいかない。
-            店舗情報のときはコピペだったので、理解が必要 
-            可能ならこのプレビューのクオリティをあげたい-->
-            <!-- <img v-bind:src='' alt='店舗画像'> -->
 
-            <!-- アップロードした画像を描写する。妥協案 -->
-            <img src='' alt='item画像1' id='itemPreview1'>
-            <img src='' alt='item画像2' id='itemPreview2'>
-            <img src='' alt='item画像3' id='itemPreview3'>
-            <img src='' alt='item画像4' id='itemPreview4'>
-        </div>
+                <v-content>
 
-        <!-- 前段のフォームで入力した商品情報をFireBaseに登録する -->
-        <div>
-            <button v-on:click='pushItemsToDB' id="pushItemsToDB">メニュー情報の登録</button>
-        </div>
+                    <h1>メニュー登録</h1>
 
-        <!-- StorePathへ遷移 -->
-        <div>
-            <button v-on:click='moveToStorePath'>メニューサイトを作る</button>
-        </div>
+                    <!-- 商品名、値段、商品画像をアップロードするための入力フォーム -->
+                    <!-- 商品1 -->
+                    <form action=''>
+                        <div>商品1
+                            <div>
+                                <label>商品名:</label>
+                                <input type='text' v-model='itemName1' placeholder='商品名を入力'>
+                            </div>
+                            <div>
+                                <label for=''>値段:</label>
+                                <input type='number' v-model='itemPrice1' placeholder='値段を入力'>
+                                円
+                            </div>
+                            <div>
+                                <label for=' itemPic1'>商品画像:</label>
+                                <input ref='upfile' type='file' id='itemPic1'>
+                            </div>
 
+                        </div>
+                    </form>
+                    <br><br><br>
+                    <!-- 商品2 -->
+                    <form action=''>
+                        <div>商品2
+                            <div>
+                                <label>商品名:</label>
+                                <input type='text' v-model='itemName2' placeholder='商品名を入力'>
+                            </div>
+                            <div>
+                                <label for=''>値段:</label>
+                                <input type='number' v-model='itemPrice2' placeholder='値段を入力'>
+                                円
+                            </div>
+                            <div>
+                                <label for=' itemPic2'>商品画像:</label>
+                                <input ref='upfile' type='file' id='itemPic2'>
+                            </div>
+
+                        </div>
+                    </form>
+                    <br><br><br>
+                    <!-- 商品3 -->
+                    <form action=''>
+                        <div>商品3
+                            <div>
+                                <label>商品名:</label>
+                                <input type='text' v-model='itemName3' placeholder='商品名を入力'>
+                            </div>
+                            <div>
+                                <label for=''>値段:</label>
+                                <input type='number' v-model='itemPrice3' placeholder='値段を入力'>
+                                円
+                            </div>
+                            <div>
+                                <label for=' itemPic3'>商品画像:</label>
+                                <input ref='upfile' type='file' id='itemPic3'>
+                            </div>
+
+                        </div>
+                    </form>
+                    <br><br><br>
+                    <!-- 商品4 -->
+                    <form action=''>
+                        <div>商品4
+                            <div>
+                                <label>商品名:</label>
+                                <input type='text' v-model='itemName4' placeholder='商品名を入力'>
+                            </div>
+                            <div>
+                                <label for=''>値段:</label>
+                                <input type='number' v-model='itemPrice4' placeholder='値段を入力'>
+                                円
+                            </div>
+                            <div>
+                                <label for=' itemPic4'>商品画像:</label>
+                                <input ref='upfile' type='file' id='itemPic4'>
+                            </div>
+
+                        </div>
+                    </form>
+                    <br><br><br>
+
+
+
+                    <!-- 前段のフォームで入力した店舗情報のプレビュー -->
+                    <div>
+                        <p>プレビュー</p>
+                        <p>{{itemName1}} : {{itemPrice1}} 円</p>
+                        <p>{{itemName2}} : {{itemPrice2}} 円</p>
+                        <p>{{itemName3}} : {{itemPrice3}} 円</p>
+                        <p>{{itemName4}} : {{itemPrice4}} 円</p>
+
+                        <!-- イメージプレビューのバインディングがうまくいかない。
+                店舗情報のときはコピペだったので、理解が必要 
+                 可能ならこのプレビューのクオリティをあげたい-->
+                        <!-- <img v-bind:src='' alt='店舗画像'> -->
+
+                        <!-- アップロードした画像を描写する。妥協案 -->
+                        <img src='' alt='item画像1' id='itemPreview1'>
+                        <img src='' alt='item画像2' id='itemPreview2'>
+                        <img src='' alt='item画像3' id='itemPreview3'>
+                        <img src='' alt='item画像4' id='itemPreview4'>
+                    </div>
+
+                    <!-- 前段のフォームで入力した商品情報をFireBaseに登録する -->
+                    <div>
+                        <button v-on:click='pushItemsToDB' id="pushItemsToDB">メニュー情報の登録</button>
+                    </div>
+
+                    <!-- StorePathへ遷移 -->
+                    <div>
+                        <button v-on:click='moveToStorePath'>メニューサイトを作る</button>
+                    </div>
+
+                </v-content>
+
+
+
+                <!-- フッター -->
+                <v-footer color="cyan" app>
+                    <v-spacer></v-spacer>
+                    <span class="white--text">&copy; 2020 Trans Menu</span>
+                </v-footer>
+
+
+            </v-app>
+        </v-app>
     </div>
 
 
 
+    <!-- ------------------------------- -->
+    <!-- 設定ファイル                      -->
+    <!-- ------------------------------- -->
+
+
+
+    <!-- <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src='js/MenuCreate.js'></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+
+
+    <!-- ------------------------------- -->
+    <!-- javascript, Vue.js              -->
+    <!-- ------------------------------- -->
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            name: 'LayoutsDemosBaselineFlipped',
+            props: {
+                source: String,
+            },
+            data: () => ({
+                drawer: null,
+                itemName1: '',
+                itemPrice1: '',
+                itemPicPath1: '',
+                itemName2: '',
+                itemPrice2: '',
+                itemPicPath2: '',
+                itemName3: '',
+                itemPrice3: '',
+                itemPicPath3: '',
+                itemName4: '',
+                itemPrice4: '',
+                itemPicPath4: '',
+
+            }),
+            methods: {
+                //'StoreCreate.html'に遷移
+                moveToStoreCreate: function () {
+                    location.href = 'StoreCreate.html';
+                },
+                //フォームの入力内容をCloud Firestoreとstorageに送信
+                pushItemsToDB: function () {
+                    this.pushItem1toDB()
+                    this.pushItem2toDB()
+                    this.pushItem3toDB()
+                    this.pushItem4toDB()
+                },
+
+                //item1の登録
+                pushItem1toDB: function () {
+                    //Storageに商品画像を追加
+                    const ref = firebase.storage().ref()
+                    const file = document.querySelector("#itemPic1").files[0]
+                    const name = new Date() + '_' + file.name
+                    const metadata = {
+                        contentType: file.type
+                    }
+                    const task = ref.child('images/' + name).put(file, metadata)
+                    task
+                        .then(snapshot => snapshot.ref.getDownloadURL())
+                        .then(url => {
+                            console.log('item1のURLは' + url)
+                            // alert("登録が完了しました")
+
+                            //#imageにURLを突っ込む方法
+                            //できればv-bindでここに描画したいので、これは妥協案
+                            const image = document.querySelector('#itemPreview1')
+                            image.src = url
+
+                            //Cloud Firestoreに店舗名と画像URLを追加
+                            // itemDB.add({
+                            //     itemName1: this.itemName1,
+                            //     itemPrice1: this.itemPrice1,
+                            //     itemPicPath1: url,
+                            // });
+                            storeDB.doc('9AMIMp58hA9yIJFMZKSl').update({
+                                iteminfo1:
+                                {
+                                    itemName1: this.itemName1,
+                                    itemPrice1: this.itemPrice1,
+                                    itemPicPath1: url,
+                                },
+                            });
+                        })
+                },
+
+                //item2の登録
+                pushItem2toDB: function () {
+                    //Storageに商品画像を追加
+                    const ref = firebase.storage().ref()
+                    const file = document.querySelector("#itemPic2").files[0]
+                    const name = new Date() + '_' + file.name
+                    const metadata = {
+                        contentType: file.type
+                    }
+                    const task = ref.child('images/' + name).put(file, metadata)
+                    task
+                        .then(snapshot => snapshot.ref.getDownloadURL())
+                        .then(url => {
+                            console.log('item2のURLは' + url)
+                            //#imageにURLを突っ込む方法
+                            //できればv-bindでここに描画したいので、これは妥協案
+                            const image = document.querySelector('#itemPreview2')
+                            image.src = url
+
+                            //Cloud Firestoreに店舗名と画像URLを追加
+                            storeDB.doc('9AMIMp58hA9yIJFMZKSl').update({
+                                iteminfo2:
+                                {
+                                    itemName2: this.itemName2,
+                                    itemPrice2: this.itemPrice2,
+                                    itemPicPath2: url,
+                                },
+                            });
+
+                        })
+
+                },
+
+                //item3の登録
+                pushItem3toDB: function () {
+                    //Storageに商品画像を追加
+                    const ref = firebase.storage().ref()
+                    const file = document.querySelector("#itemPic3").files[0]
+                    const name = new Date() + '_' + file.name
+                    const metadata = {
+                        contentType: file.type
+                    }
+                    const task = ref.child('images/' + name).put(file, metadata)
+                    task
+                        .then(snapshot => snapshot.ref.getDownloadURL())
+                        .then(url => {
+                            console.log('item3のURLは' + url)
+                            // alert("登録が完了しました")
+
+                            //#imageにURLを突っ込む方法
+                            //できればv-bindでここに描画したいので、これは妥協案
+                            const image = document.querySelector('#itemPreview3')
+                            image.src = url
+
+                            //Cloud Firestoreに店舗名と画像URLを追加
+                            storeDB.doc('9AMIMp58hA9yIJFMZKSl').update({
+                                iteminfo3:
+                                {
+                                    itemName3: this.itemName3,
+                                    itemPrice3: this.itemPrice3,
+                                    itemPicPath3: url,
+                                },
+                            });
+                        })
+
+                },
+
+                //item4の登録
+                pushItem4toDB: function () {
+                    //Storageに商品画像を追加
+                    const ref = firebase.storage().ref()
+                    const file = document.querySelector("#itemPic4").files[0]
+                    const name = new Date() + '_' + file.name
+                    const metadata = {
+                        contentType: file.type
+                    }
+                    const task = ref.child('images/' + name).put(file, metadata)
+                    task
+                        .then(snapshot => snapshot.ref.getDownloadURL())
+                        .then(url => {
+                            console.log('item4のURLは' + url)
+                            //#imageにURLを突っ込む方法
+                            //できればv-bindでここに描画したいので、これは妥協案
+                            const image = document.querySelector('#itemPreview4')
+                            image.src = url
+
+                            //Cloud Firestoreに店舗名と画像URLを追加
+                            storeDB.doc('9AMIMp58hA9yIJFMZKSl').update({
+                                iteminfo4:
+                                {
+                                    itemName4: this.itemName4,
+                                    itemPrice4: this.itemPrice4,
+                                    itemPicPath4: url,
+                                },
+                            });
+
+                            //完了alert
+                            alert("画像登録が完了しました")
+
+                        })
+
+                },
+
+                //'StorePath.html'に遷移
+                moveToStorePath: function () {
+                    location.href = 'StorePath.html';
+                },
+            }
+        })
+    </script>
 
 
 
 
-    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
-    <script src='js/MenuCreate.js'></script>
+
+    <!-- ------------------------------- -->
+    <!-- firebase                        -->
+    <!-- ------------------------------- -->
+
+
+
     <!-- Firebaseへ接続 -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
