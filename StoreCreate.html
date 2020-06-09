@@ -2,55 +2,220 @@
 <html lang='ja'>
 
 <head>
+    <!-- vuetifyのstylesheet-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <!-- メタデータ -->
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Trans Menu</title>
 </head>
 
+<!-- ------------------------------- -->
+<!-- HTML                            -->
+<!-- ------------------------------- -->
+
 <body>
-    <div id='app'>
-        <h1>店舗登録</h1>
+    <div id="app">
+        <v-app id="inspire">
+            <v-app id="inspire">
 
-        <!-- 店舗名、カラー、画像をアップロードするための入力フォーム -->
-        <form action=''>
-            <div>
-                <label for='storeName'>店舗名:</label>
-                <input type='text' id='storeName' v-model='storeName' placeholder='店舗名を入力'>
-            </div>
-            <div>
-                <label for='storeColor'>店舗のイメージカラー:</label>
-                <input type='color' id='storeColor' v-model='storeColor'>
-            </div>
-            <div>
-                <label for='storePic'>店舗画像:</label>
-                <input ref='upfile' type='file' id='storePic' v-on:change='previewStorePic'>
-            </div>
-        </form>
+                <!-- ナビゲーションドロワー -->
+                <v-navigation-drawer v-model="drawer" app right>
+                    <v-list dense>
+                        <v-list-item link v-on:click='moveToStoreCreate'>
+                            <v-list-item-action>
+                                <v-icon>mdi-home</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>トップ</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link v-on:click='moveToStoreCreate'>
+                            <v-list-item-action>
+                                <v-icon>mdi-format-list-bulleted</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>店舗一覧</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-email</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>お問い合わせ</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                </v-navigation-drawer>
+
+                <!-- アップバー -->
+                <v-app-bar app color="cyan" dark>
+                    <v-toolbar-title>Trans Menu</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                </v-app-bar>
 
 
-        <!-- 前段のフォームで入力した店舗情報のプレビュー -->
-        <div>
-            <p>プレビュー</p>
-            <p>{{storeName}}</p>
-            <img v-bind:src='storePicPath' alt='店舗画像'>
-        </div>
 
 
-        <!-- 前段のフォームで入力した店舗情報をFireBaseに登録する -->
-        <div>
-            <button v-on:click='pushStoreToDB' id="pushStoreToDB">店舗情報の登録</button>
-        </div>
 
-        <!-- MenuCreateへ遷移 -->
-        <div>
-            <button v-on:click='moveToMenuCreate'>商品登録へすすむ</button>
-        </div>
+                <v-content>
+                    <h1>店舗登録</h1>
+
+                    <!-- 店舗名、カラー、画像をアップロードするための入力フォーム -->
+                    <form action=''>
+                        <div>
+                            <label for='storeName'>店舗名:</label>
+                            <input type='text' id='storeName' v-model='storeName' placeholder='店舗名を入力'>
+                        </div>
+                        <div>
+                            <label for='storeColor'>店舗のイメージカラー:</label>
+                            <input type='color' id='storeColor' v-model='storeColor'>
+                        </div>
+                        <div>
+                            <label for='storePic'>店舗画像:</label>
+                            <input ref='upfile' type='file' id='storePic' v-on:change='previewStorePic'>
+                        </div>
+                    </form>
 
 
+                    <!-- 前段のフォームで入力した店舗情報のプレビュー -->
+                    <div>
+                        <p>プレビュー</p>
+                        <p>{{storeName}}</p>
+                        <img v-bind:src='storePicPath' alt='店舗画像'>
+                    </div>
+
+
+                    <!-- 前段のフォームで入力した店舗情報をFireBaseに登録する -->
+                    <div>
+                        <button v-on:click='pushStoreToDB' id="pushStoreToDB">店舗情報の登録</button>
+                    </div>
+
+                    <!-- MenuCreateへ遷移 -->
+                    <div>
+                        <button v-on:click='moveToMenuCreate'>商品登録へすすむ</button>
+                    </div>
+
+                </v-content>
+
+
+
+                <!-- フッター -->
+                <v-footer color="cyan" app>
+                    <v-spacer></v-spacer>
+                    <span class="white--text">&copy; 2020 Trans Menu</span>
+                </v-footer>
+
+
+            </v-app>
+        </v-app>
     </div>
 
-    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
-    <script src='js/StoreCreate.js'></script>
+
+    <!-- ------------------------------- -->
+    <!-- 設定ファイル                      -->
+    <!-- ------------------------------- -->
+
+    <!-- <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src='js/StoreCreate.js'></script> -->
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+
+
+    <!-- ------------------------------- -->
+    <!-- javascript, Vue.js              -->
+    <!-- ------------------------------- -->
+
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            name: 'LayoutsDemosBaselineFlipped',
+            props: {
+                source: String,
+            },
+            data: () => ({
+                drawer: null,
+                storeName: '',
+                storePicPath: '',
+                storeColor: '',
+
+
+            }),
+            methods: {
+                //店舗画像をプレビューする
+                previewStorePic: function () {
+                    const files = this.$refs.upfile;
+                    const fileImg = files.files[0];
+                    if (fileImg.type.startsWith("image/")) {
+                        this.storePicPath = window.URL.createObjectURL(fileImg);
+                    }
+                },
+                //フォームの入力内容をCloud Firestoreとstorageに送信
+                pushStoreToDB: function () {
+
+                    //Storageに店舗画像を追加
+                    const ref = firebase.storage().ref()
+                    const file = document.querySelector("#storePic").files[0]
+                    const name = new Date() + '_' + file.name
+                    const metadata = {
+                        contentType: file.type
+                    }
+                    const task = ref.child('images/' + name).put(file, metadata)
+                    task
+                        .then(snapshot => snapshot.ref.getDownloadURL())
+                        .then(url => {
+                            console.log(url)
+                            alert("店舗登録が完了しました")
+                            //#imageにURLを突っ込む方法
+                            // const image = document.querySelector('#image')
+                            // image.src = url
+
+                            //Cloud Firestoreに店舗名と画像URLを追加
+                            storeDB.add({
+                                storeName: this.storeName,
+                                storePicPath: url,
+                                storeColor: "",
+                            });
+                        })
+
+                },
+
+                //'MenuCreate.html'に遷移
+                moveToMenuCreate: function () {
+                    location.href = 'MenuCreate.html';
+                },
+
+                //'StoreCreate.html'に遷移
+                moveToStoreCreate: function () {
+                    location.href = 'StoreCreate.html';
+                },
+
+
+                //'StorePath.html'に遷移
+                moveToStorePath: function () {
+                    location.href = 'StorePath.html';
+                },
+            }
+        })
+    </script>
+
+
+    <!-- ------------------------------- -->
+    <!-- firebase                        -->
+    <!-- ------------------------------- -->
+
+
     <!-- Firebaseへ接続 -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
