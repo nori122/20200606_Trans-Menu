@@ -2,47 +2,124 @@
 <html lang='ja'>
 
 <head>
+    <!-- vuetifyのstylesheet-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <!-- メタデータ -->
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Trans Menu</title>
 </head>
 
+
+
+<!-- ------------------------------- -->
+<!-- HTML                            -->
+<!-- ------------------------------- -->
+
+
+
 <body>
-    <div id='app'>
+    <div id="app">
+        <v-app id="inspire">
+            <v-app id="inspire">
 
-        <!-- 店舗情報 -->
-        <h1>{{storeName}}</h1>
-        <img alt='' v-bind:src=storePicPath>
+                <!-- ナビゲーションドロワー -->
+                <v-navigation-drawer v-model="drawer" app right>
+                    <v-list dense>
+                        <v-list-item link v-on:click='moveToStoreCreate'>
+                            <v-list-item-action>
+                                <v-icon>mdi-home</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>トップ</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link v-on:click='moveToStoreCreate'>
+                            <v-list-item-action>
+                                <v-icon>mdi-format-list-bulleted</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>店舗一覧</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-email</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>お問い合わせ</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                </v-navigation-drawer>
 
-        <!-- 商品情報 -->
-        <div class='items'>
-            <div>
-                <img style="width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath1'>
-                <div>{{itemName1}}スムージー -- {{itemPrice1}}円</div>
-            </div>
-            <div>
-                <img style="width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath2'>
-                <div>{{itemName2}}スムージー -- {{itemPrice2}}円</div>
-            </div>
-            <div>
-                <img style=" width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath3'>
-                <div>{{itemName3}}スムージー -- {{itemPrice3}}円</div>
-            </div>
-            <div>
-                <img style="width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath4'>
-                <div>{{itemName4}}スムージー -- {{itemPrice4}}円</div>
-            </div>
+                <!-- アップバー -->
+                <v-app-bar app color="cyan" dark>
+                    <v-toolbar-title>Trans Menu</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                </v-app-bar>
 
-        </div>
+                <v-content>
+                    <!-- 店舗情報 -->
+                    <h1>{{storeName}}</h1>
+                    <img alt='' v-bind:src=storePicPath>
+
+                    <!-- 商品情報 -->
+                    <div class='items'>
+                        <div>
+                            <img style="width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath1'>
+                            <div>{{itemName1}} -- {{itemPrice1}}円</div>
+                        </div>
+                        <div>
+                            <img style="width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath2'>
+                            <div>{{itemName2}} -- {{itemPrice2}}円</div>
+                        </div>
+                        <div>
+                            <img style=" width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath3'>
+                            <div>{{itemName3}} -- {{itemPrice3}}円</div>
+                        </div>
+                        <div>
+                            <img style="width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath4'>
+                            <div>{{itemName4}} -- {{itemPrice4}}円</div>
+                        </div>
+
+                    </div>
+                </v-content>
+
+                <!-- フッター -->
+                <v-footer color="cyan" app>
+                    <v-spacer></v-spacer>
+                    <span class="white--text">&copy; 2020 Trans Menu</span>
+                </v-footer>
+
+
+            </v-app>
+        </v-app>
     </div>
 
+    <!-- ------------------------------- -->
+    <!-- 設定ファイル                      -->
+    <!-- ------------------------------- -->
+
+    <!-- <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script> -->
+    <!-- <script src='js/index.js'></script> -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 
 
 
 
+    <!-- ------------------------------- -->
+    <!-- firebase                        -->
+    <!-- ------------------------------- -->
 
-    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
-    <!-- <script src='js/CreatedStore.js'></script> -->
 
     <!-- Firebaseへ接続 -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -81,23 +158,12 @@
         var itemDB = firebase.firestore().collection('items');
 
 
-        // // Firestoreのstoresコレクションを取得
-        // storeDB.get().then(function (querySnapshot) {
-        //     // onSnapshotでデータ変更時に実行される!
-        //     // querySnapshot.docsにデータが配列形式で入る 
-        //     querySnapshot.docs.forEach(function (doc) {
-        //         const id = doc.id;
-        //         const data = doc.data();
-        //         const storeName = data.storeName;
-        //         const storePicPath = data.storePicPath;
-        //         // console.log(storeName);
-        //         // console.log(storePicPath);
-        //     });
-        //     console.log(querySnapshot.docs[0].id)
-        // });
+
+
+        //   javascript, Vue.js
 
         //選択された店舗名を代入する。localStorageとかで渡すか？
-        const selectedStore = 'test0041';
+        const selectedStore = '弥生軒';
 
         //storeNameで指定して取得
         storeDB.where("storeName", "==", selectedStore)
@@ -112,8 +178,14 @@
                     //vueインスタンス
                     new Vue({
                         el: '#app',
+                        vuetify: new Vuetify(),
+                        name: 'LayoutsDemosBaselineFlipped',
+                        props: {
+                            source: String,
+                        },
                         data: function () {
                             return {
+                                drawer: null,
                                 //店舗情報
                                 storeName: doc.data().storeName,
                                 storePicPath: doc.data().storePicPath,
@@ -136,8 +208,15 @@
                         },
 
                         methods: {
-
-                        },
+                            //'StoreCreate.html'に遷移
+                            moveToStoreCreate: function () {
+                                location.href = 'StoreCreate.html';
+                            },
+                            //'StoreList.html'に遷移
+                            moveToStoreList: function () {
+                                location.href = 'https://www.google.com/'
+                            }
+                        }
 
 
                     });
