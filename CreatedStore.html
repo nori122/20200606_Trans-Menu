@@ -63,31 +63,55 @@
                     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 </v-app-bar>
 
+
+
                 <v-content>
+
+
+
+
+
                     <!-- 店舗情報 -->
-                    <h1>{{storeName}}</h1>
-                    <img alt='' v-bind:src=storePicPath>
+                    <img style="width:90%;" class="ma-5" alt='' v-bind:src=storePicPath>
+                    <h1 class="text-center">{{storeName}}</h1>
 
                     <!-- 商品情報 -->
-                    <div class='items'>
-                        <div>
-                            <img style="width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath1'>
-                            <div>{{itemName1}} -- {{itemPrice1}}円</div>
-                        </div>
-                        <div>
-                            <img style="width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath2'>
-                            <div>{{itemName2}} -- {{itemPrice2}}円</div>
-                        </div>
-                        <div>
-                            <img style=" width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath3'>
-                            <div>{{itemName3}} -- {{itemPrice3}}円</div>
-                        </div>
-                        <div>
-                            <img style="width:300px; height:300px;" src='' alt='' v-bind:src='itemPicPath4'>
-                            <div>{{itemName4}} -- {{itemPrice4}}円</div>
-                        </div>
+                    <template>
+                        <v-container class="grey lighten-5">
+                            <v-row no-gutters>
+                                <v-col>
+                                    <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                        <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath1'>
+                                        <div class="mt-auto">{{itemName1}} -- {{itemPrice1}}円</div>
+                                    </v-card>
+                                </v-col>
 
-                    </div>
+                                <v-col>
+                                    <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                        <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath2'>
+                                        <div class="mt-auto">{{itemName2}} -- {{itemPrice2}}円</div>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                            <v-row no-gutters>
+                                <v-col>
+                                    <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                        <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath3'>
+                                        <div class="mt-auto">{{itemName3}} -- {{itemPrice3}}円</div>
+                                    </v-card>
+                                </v-col>
+                                <v-col>
+                                    <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                        <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath4'>
+                                        <div class="mt-auto">{{itemName4}} -- {{itemPrice4}}円</div>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+
+
+                        </v-container>
+                    </template>
+
                 </v-content>
 
                 <!-- フッター -->
