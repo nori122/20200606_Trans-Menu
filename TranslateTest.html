@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang='ja'>
+
+<head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Tranlate Test</title>
+</head>
+
+<body>
+    <div id='app'>
+        <h1>Translate extention</h1>
+
+        <!-- 店舗名、カラー、画像をアップロードするための入力フォーム -->
+        <form action=''>
+            <div>
+                <label for='input'>元となるテキスト:</label>
+                <input type='text' id='input' v-model='input' placeholder='日本語でOK'>
+            </div>
+
+        </form>
+
+
+        <!-- 前段のフォームで入力した店舗情報のプレビュー -->
+        <div>
+            <p>プレビュー</p>
+            <p>--{{input}}</p>
+            <p>--{{translatedEn}}</p>
+            <p>--{{translatedEs}}</p>
+            <p>--{{translatedFr}}</p>
+        </div>
+
+
+        <!-- 前段のフォームで入力した店舗情報をFireBaseに登録する -->
+        <div>
+            <button v-on:click='pushTextToDB' id="pushTextToDB">翻訳</button>
+            <button v-on:click='displayTranslatedText' id="displayTranslatedText">表示</button>
+        </div>
+
+    </div>
+
+    <script src=' https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <!-- <script src='js/StoreCreate.js'></script> -->
+    <!-- Firebaseへ接続 -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
+            authDomain: "transmenu-98803.firebaseapp.com",
+            databaseURL: "https://transmenu-98803.firebaseio.com",
+            projectId: "transmenu-98803",
+            storageBucket: "transmenu-98803.appspot.com",
+            messagingSenderId: "1003433484012",
+            appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
+            measurementId: "G-KZBKDT9WYL"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Firebaseと接続できてるかチェック
+        // console.log(firebase);
+
+        // FirestoreのtranslationsコレクションをtranslationsDBオブジェクトとして定義
+        var translationsDB = firebase.firestore().collection('translations');
+
+        new Vue({
+            el: '#app',
+            data: function () {
+                return {
+                    docID: '',
+                    input: '',
+                    translatedEn: '英語',
+                    translatedEs: 'スペイン語',
+                    translatedFr: 'フランス語',
+                };
+            },
+            methods: {
+                //フォームの入力内容をCloud Firestoreとstorageに送信
+                pushTextToDB: function () {
+                    //Cloud Firestoreに店舗名と画像URLを追加
+                    translationsDB.add({
+                        input: this.input,
+                    });
+                    docID = this.input
+                    return docID;
+                },
+                displayTranslatedText: function () {
+                    const newRef = translationsDB.doc('PDMmrotX32Kbffgxxhz4')
+                    newRef.get().then(docSnapshot => {
+                        console.log(docSnapshot.data().input);
+                    })
+                }
+            }
+        });
+
+//memo
+// inputをGetで渡して、生成するstoreメニューページの動的パラメータにする
+    </script>
+
+
+
+</body>
+
+</html>
+
+<!-- 
+memo
+・次はfirestoreへの接続をやる！！
+・カラーは省くかも
+・できればプレビューのところで、作成ずみの店舗イメージが見せられるといいなー。iPhoneのベゼル作って、それぞれをそれっぽく配置して。
+-->
