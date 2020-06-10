@@ -165,18 +165,14 @@
 
         // Firebaseと接続できてるかチェック
         console.log('接続チェック:' + firebase);
-    </script>
 
-    <!-- 
-    <script>
         // FirestoreのstoresコレクションをstoreDBオブジェクトとして定義
 
-
         //storeNameで指定して取得
-        var docRef = db.collection("stores").doc("store1");
+        var docRef = firebase.firestore().collection("stores").doc("store1");
         docRef.get().then(function (doc) {
             if (doc.exists) {
-                console.log("Document data:", doc.data());
+                console.log("ドキュメントデータは、", doc.data());
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -185,7 +181,9 @@
             console.log("Error getting document:", error);
         });
 
-
+    </script>
+    <!--     
+    <script>
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
@@ -231,8 +229,8 @@
 
 
         });
-    </script> -->
-
+    </script> 
+ -->
 
 
 </body>
