@@ -58,16 +58,16 @@
 
                 <v-tabs v-model="tab" background-color="#FFFBE6" color="basil" grow>
                     <v-tab>
-                        日本語
+                        フランス語
                     </v-tab>
                     <v-tab>
-                        English
+                        ロシア語
                     </v-tab>
                     <v-tab>
-                        中文
+                        アラビア語
                     </v-tab>
                     <v-tab>
-                        한국어
+                        ベンガル語
                     </v-tab>
                 </v-tabs>
 
@@ -84,7 +84,7 @@
                                     <img style="width:45vw;" class="" alt='' v-bind:src=storePicPath>
                                 </div>
                                 <div>
-                                    <p style="font-size:13px; margin:0 15px;">{{storeComment}}</p>
+                                    <p style="font-size:13px; margin:0 15px;">{{storeCommentFR}}</p>
                                 </div>
                             </v-container>
                             <!-- <h1 class="text-center">{{storeName}}</h1> -->
@@ -142,7 +142,7 @@
                                     <img style="width:45vw;" class="" alt='' v-bind:src=storePicPath>
                                 </div>
                                 <div>
-                                    <p style="font-size:13px; margin:0 15px;">{{storeCommentEN}}</p>
+                                    <p style="font-size:13px; margin:0 15px;">{{storeCommentRU}}</p>
                                 </div>
                             </v-container>
                             <!-- <h1 class="text-center">{{storeName}}</h1> -->
@@ -151,7 +151,7 @@
                             <template>
                                 <v-container class="grey lighten-5">
                                     <h4>メニュー</h4>
-                                    <v-row no-gutters>
+                                    <v-row>
                                         <v-col>
                                             <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
                                                 <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath1'>
@@ -166,7 +166,7 @@
                                             </v-card>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters>
+                                    <v-row>
                                         <v-col>
                                             <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
                                                 <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath3'>
@@ -201,7 +201,7 @@
                                     <img style="width:45vw;" class="" alt='' v-bind:src=storePicPath>
                                 </div>
                                 <div>
-                                    <p style="font-size:13px; margin:0 15px;">{{storeCommentZH}}</p>
+                                    <p style="font-size:13px; margin:0 15px;">{{storeCommentAR}}</p>
                                 </div>
                             </v-container>
                             <!-- <h1 class="text-center">{{storeName}}</h1> -->
@@ -210,7 +210,7 @@
                             <template>
                                 <v-container class="grey lighten-5">
                                     <h4>メニュー</h4>
-                                    <v-row no-gutters>
+                                    <v-row>
                                         <v-col>
                                             <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
                                                 <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath1'>
@@ -225,7 +225,7 @@
                                             </v-card>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters>
+                                    <v-row>
                                         <v-col>
                                             <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
                                                 <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath3'>
@@ -258,7 +258,7 @@
                                     <img style="width:45vw;" class="" alt='' v-bind:src=storePicPath>
                                 </div>
                                 <div>
-                                    <p style="font-size:13px; margin:0 15px;">{{storeCommentKO}}</p>
+                                    <p style="font-size:13px; margin:0 15px;">{{storeCommentBN}}</p>
                                 </div>
                             </v-container>
                             <!-- <h1 class="text-center">{{storeName}}</h1> -->
@@ -267,7 +267,7 @@
                             <template>
                                 <v-container class="grey lighten-5">
                                     <h4>メニュー</h4>
-                                    <v-row no-gutters>
+                                    <v-row>
                                         <v-col>
                                             <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
                                                 <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath1'>
@@ -282,7 +282,7 @@
                                             </v-card>
                                         </v-col>
                                     </v-row>
-                                    <v-row no-gutters>
+                                    <v-row>
                                         <v-col>
                                             <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
                                                 <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath3'>
@@ -374,10 +374,10 @@
                             storeName: doc.data().storeName,
                             storePicPath: doc.data().storePicPath,
                             storeColor: '',
-                            storeComment: doc.data().storeComment,
-                            storeCommentEN: doc.data().translated.en,
-                            storeCommentZH: doc.data().translated.zh,
-                            storeCommentKO: doc.data().translated.ko,
+                            storeCommentAR: doc.data().translated.ar,
+                            storeCommentRU: doc.data().translated.ru,
+                            storeCommentFR: doc.data().translated.fr,
+                            storeCommentBN: doc.data().translated.bn,
 
                             //メニュー情報
                             itemName1: doc.data().iteminfo1.itemName1,

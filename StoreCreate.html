@@ -66,15 +66,24 @@
                 <v-content>
                     <br>
                     <p class="mx-5">あなたのレストランの店名、店舗画像を登録してください</p>
-
-                    <!-- 店舗名、カラー、画像をアップロードするための入力フォーム -->
                     <v-card color="#E3F2FD" class="ma-2 pt-7 pb-7">
 
                         <form>
-
+                            <!-- 店名 -->
                             <v-text-field class="ml-8 mr-5" v-model="storeName" label="店名を入力してください" required>
                             </v-text-field>
+                            <!-- 店舗コメント -->
 
+
+                            <template>
+                                <v-container fluid>
+                                    <v-textarea class="ml-6 mr-4" v-model="storeComment" counter
+                                        label="店舗紹介コメント(100字以内)">
+                                    </v-textarea>
+                                </v-container>
+                            </template>
+
+                            <!-- 店舗画像 -->
                             <template>
                                 <div>
                                     <v-file-input class="mr-5" chips multiple label="店舗画像をアップロードしてください" id='storePic'>
@@ -174,6 +183,7 @@
                 storeName: '',
                 storePicPath: '',
                 storeColor: '',
+                storeComment: '',
 
 
             }),
@@ -210,8 +220,8 @@
                             storeDB.doc('store1').set({
                                 storeName: this.storeName,
                                 storePicPath: url,
-                                storeColor: "",
-                            });
+                                storeComment: this.storeComment,
+                            })
                         })
 
                 },
