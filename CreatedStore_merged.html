@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang='ja'>
+
+
+<head>
+    <!-- vuetifyのstylesheet-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <!-- メタデータ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta charset='UTF-8' />
+    <title>Trans Menu</title>
+</head>
+
+
+
+<!-- ------------------------------- -->
+<!-- HTML                            -->
+<!-- ------------------------------- -->
+
+<body>
+    <div id="app">
+        <template>
+            <v-card color="basil">
+                <v-card-title class="text-center justify-center py-6">
+                    <h1 class="font-weight-bold display-3 basil--text">a{{storeName}}</h1>
+                </v-card-title>
+
+                <v-tabs v-model="tab" background-color="#FFFBE6" color="basil" grow>
+                    <v-tab>
+                        日本語
+                    </v-tab>
+                    <v-tab>
+                        English
+                    </v-tab>
+                    <v-tab>
+                        中文
+                    </v-tab>
+                    <v-tab>
+                        한국어
+                    </v-tab>
+                </v-tabs>
+
+                <v-tabs-items v-model="tab">
+                    <v-tab-item color="basil" flat>
+
+                    </v-tab-item>
+
+
+                    <v-tab-item color="basil" flat>
+                        <v-content style="background-color:#FFFBE6;">いいい<br><br><br><br><br><br><br><br><br><br><br>
+                        </v-content>
+                    </v-tab-item>
+
+
+                    <v-tab-item color="basil" flat>
+                        <v-content style="background-color:#FFFBE6;">ううう<br><br><br><br><br><br><br><br><br><br>
+                        </v-content>
+                    </v-tab-item>
+
+
+                    <v-tab-item color="basil" flat>
+                        <v-content style="background-color:#FFFBE6;">えええ<br><br><br><br><br><br><br><br><br><br>
+                        </v-content>
+                    </v-tab-item>
+
+                </v-tabs-items>
+            </v-card>
+        </template>
+
+        <v-content style="background-color:#FFFBE6;">
+            <!-- 店舗情報 -->
+            <v-container class="StoreContainer">
+                <div style="width:45vw">
+                    <img style="width:45vw;" class="" alt='' v-bind:src=storePicPath>
+                </div>
+                <div>
+                    <p style="font-size:13px; margin:0 15px;">{{storeComment}}</p>
+                </div>
+            </v-container>
+            <!-- <h1 class="text-center">{{storeName}}</h1> -->
+
+            <!-- 商品情報 -->
+            <template>
+                <v-container class="grey lighten-5">
+                    <h4>メニュー</h4>
+                    <v-row no-gutters>
+                        <v-col>
+                            <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
+                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath1'>
+                                <div>{{itemName1}} -- {{itemPrice1}}円</div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col>
+                            <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
+                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath2'>
+                                <div>{{itemName2}} -- {{itemPrice2}}円</div>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                    <v-row no-gutters>
+                        <v-col>
+                            <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
+                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath3'>
+                                <div>{{itemName3}} -- {{itemPrice3}}円</div>
+                            </v-card>
+                        </v-col>
+                        <v-col>
+                            <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
+                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath4'>
+                                <div>{{itemName4}} -- {{itemPrice4}}円</div>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+
+
+                </v-container>
+            </template>
+        </v-content>
+
+
+    </div>
+
+
+
+    <!-- ------------------------------- -->
+    <!-- 設定ファイル                      -->
+    <!-- ------------------------------- -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+
+
+    <!-- ------------------------------- -->
+    <!-- firebase                        -->
+    <!-- ------------------------------- -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAA26apLP_cf-_LP0pbZmk9UoQkPGPtKKc",
+            authDomain: "transmenu-98803.firebaseapp.com",
+            databaseURL: "https://transmenu-98803.firebaseio.com",
+            projectId: "transmenu-98803",
+            storageBucket: "transmenu-98803.appspot.com",
+            messagingSenderId: "1003433484012",
+            appId: "1:1003433484012:web:6a6d332c5e1e7fa6dfcfc9",
+            measurementId: "G-KZBKDT9WYL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Firebaseと接続できてるかチェック
+        console.log('接続チェック:' + firebase);
+    </script>
+
+    <!-- 
+    <script>
+        // FirestoreのstoresコレクションをstoreDBオブジェクトとして定義
+
+
+        //storeNameで指定して取得
+        var docRef = db.collection("stores").doc("store1");
+        docRef.get().then(function (doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function (error) {
+            console.log("Error getting document:", error);
+        });
+
+
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            props: {
+                source: String,
+            },
+
+            data: function () {
+                return {
+                    tab: null,
+                    //店舗情報
+                    storeName: doc.data().storeName,
+                    storePicPath: doc.data().storePicPath,
+                    storeColor: '',
+                    storeComment: '安くて早くてうまいです！',
+
+                    //メニュー情報
+                    itemName1: doc.data().iteminfo1.itemName1,
+                    itemPrice1: doc.data().iteminfo1.itemPrice1,
+                    itemPicPath1: doc.data().iteminfo1.itemPicPath1,
+                    itemName2: doc.data().iteminfo2.itemName2,
+                    itemPrice2: doc.data().iteminfo2.itemPrice2,
+                    itemPicPath2: doc.data().iteminfo2.itemPicPath2,
+                    itemName3: doc.data().iteminfo3.itemName3,
+                    itemPrice3: doc.data().iteminfo3.itemPrice3,
+                    itemPicPath3: doc.data().iteminfo3.itemPicPath3,
+                    itemName4: doc.data().iteminfo4.itemName4,
+                    itemPrice4: doc.data().iteminfo4.itemPrice4,
+                    itemPicPath4: doc.data().iteminfo4.itemPicPath4,
+                };
+            },
+
+            methods: {
+                //'StoreCreate.html'に遷移
+                moveToStoreCreate: function () {
+                    location.href = 'StoreCreate.html';
+                },
+                //'StoreList.html'に遷移
+                moveToStoreList: function () {
+                    location.href = 'https://www.google.com/'
+                }
+            }
+
+
+        });
+    </script> -->
+
+
+
+</body>
+
+</html>

@@ -267,7 +267,7 @@
         firebase.initializeApp(firebaseConfig);
 
         // Firebaseと接続できてるかチェック
-        // console.log(firebase);
+        console.log('接続チェック' + firebase);
 
         // FirestoreのstoresコレクションをstoreDBオブジェクトとして定義
         var storeDB = firebase.firestore().collection('stores');
