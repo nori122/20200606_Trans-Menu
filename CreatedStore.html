@@ -11,7 +11,26 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Trans Menu</title>
+
+
+    <!-- ------------------------------- -->
+    <!-- css                             -->
+    <!-- ------------------------------- -->
+
+    <style>
+        /* Helper classes */
+        .basil {
+            background-color: #FFFBE6 !important;
+        }
+
+        .basil--text {
+            color: #356859 !important;
+        }
+    </style>
+
 </head>
+
+
 
 
 
@@ -23,10 +42,10 @@
 
 <body>
     <div id="app">
-        <v-app id="inspire">
+        <!-- <v-app id="inspire">
             <v-app id="inspire">
 
-                <!-- ナビゲーションドロワー -->
+                ナビゲーションドロワー
                 <v-navigation-drawer v-model="drawer" app right>
                     <v-list dense>
                         <v-list-item href="index.html">
@@ -56,73 +75,158 @@
                     </v-list>
                 </v-navigation-drawer>
 
-                <!-- アップバー -->
+                アップバー
                 <v-app-bar app color="cyan" dark>
                     <v-toolbar-title class="headline">Trans Menu</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-                </v-app-bar>
+                </v-app-bar> -->
+
+        <template>
+            <v-card color="basil">
+                <v-card-title class="text-center justify-center py-6">
+                    <h1 class="font-weight-bold display-3 basil--text">{{storeName}}</h1>
+                </v-card-title>
+
+                <v-tabs v-model="tab" background-color="#FFFBE6" color="basil" grow>
+                    <v-tab>
+                        日本語
+                    </v-tab>
+                    <v-tab>
+                        英語
+                    </v-tab>
+                    <v-tab>
+                        中国語
+                    </v-tab>
+                    <v-tab>
+                        韓国語
+                    </v-tab>
+                </v-tabs>
+
+                <v-tabs-items v-model="tab">
+                    <v-tab-item color="basil" flat>
+                        <v-content style="background-color:#FFFBE6;">
+                            <!-- 店舗情報 -->
+                            <img style="width:90%;" class="ma-5" alt='' v-bind:src=storePicPath>
+                            <!-- <h1 class="text-center">{{storeName}}</h1> -->
+
+                            <!-- 商品情報 -->
+                            <template>
+                                <v-container class="grey lighten-5">
+                                    <v-row no-gutters>
+                                        <v-col>
+                                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath1'>
+                                                <div class="mt-auto">{{itemName1}} -- {{itemPrice1}}円</div>
+                                            </v-card>
+                                        </v-col>
+
+                                        <v-col>
+                                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath2'>
+                                                <div class="mt-auto">{{itemName2}} -- {{itemPrice2}}円</div>
+                                            </v-card>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row no-gutters>
+                                        <v-col>
+                                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath3'>
+                                                <div class="mt-auto">{{itemName3}} -- {{itemPrice3}}円</div>
+                                            </v-card>
+                                        </v-col>
+                                        <v-col>
+                                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath4'>
+                                                <div class="mt-auto">{{itemName4}} -- {{itemPrice4}}円</div>
+                                            </v-card>
+                                        </v-col>
+                                    </v-row>
 
 
-
-                <v-content>
-
-
-
-
-
-                    <!-- 店舗情報 -->
-                    <img style="width:90%;" class="ma-5" alt='' v-bind:src=storePicPath>
-                    <h1 class="text-center">{{storeName}}</h1>
-
-                    <!-- 商品情報 -->
-                    <template>
-                        <v-container class="grey lighten-5">
-                            <v-row no-gutters>
-                                <v-col>
-                                    <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
-                                        <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath1'>
-                                        <div class="mt-auto">{{itemName1}} -- {{itemPrice1}}円</div>
-                                    </v-card>
-                                </v-col>
-
-                                <v-col>
-                                    <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
-                                        <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath2'>
-                                        <div class="mt-auto">{{itemName2}} -- {{itemPrice2}}円</div>
-                                    </v-card>
-                                </v-col>
-                            </v-row>
-                            <v-row no-gutters>
-                                <v-col>
-                                    <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
-                                        <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath3'>
-                                        <div class="mt-auto">{{itemName3}} -- {{itemPrice3}}円</div>
-                                    </v-card>
-                                </v-col>
-                                <v-col>
-                                    <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
-                                        <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath4'>
-                                        <div class="mt-auto">{{itemName4}} -- {{itemPrice4}}円</div>
-                                    </v-card>
-                                </v-col>
-                            </v-row>
+                                </v-container>
+                            </template>
+                        </v-content>
+                    </v-tab-item>
 
 
-                        </v-container>
-                    </template>
+                    <v-tab-item color="basil" flat>
+                        <v-content style="background-color:#FFFBE6;">いいい<br><br><br><br><br><br><br><br><br><br><br>
+                        </v-content>
+                    </v-tab-item>
 
-                </v-content>
 
-                <!-- フッター -->
-                <v-footer color="cyan" app>
+                    <v-tab-item color="basil" flat>
+                        <v-content style="background-color:#FFFBE6;">ううう<br><br><br><br><br><br><br><br><br><br>
+                        </v-content>
+                    </v-tab-item>
+
+
+                    <v-tab-item color="basil" flat>
+                        <v-content style="background-color:#FFFBE6;">えええ<br><br><br><br><br><br><br><br><br><br>
+                        </v-content>
+                    </v-tab-item>
+
+
+                </v-tabs-items>
+            </v-card>
+        </template>
+
+
+        <v-content>
+
+            <!-- 店舗情報 -->
+            <!-- <img style="width:90%;" class="ma-5" alt='' v-bind:src=storePicPath>
+            <h1 class="text-center">{{storeName}}</h1> -->
+
+            <!-- 商品情報 -->
+            <!-- <template>
+                <v-container class="grey lighten-5">
+                    <v-row no-gutters>
+                        <v-col>
+                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath1'>
+                                <div class="mt-auto">{{itemName1}} -- {{itemPrice1}}円</div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col>
+                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath2'>
+                                <div class="mt-auto">{{itemName2}} -- {{itemPrice2}}円</div>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                    <v-row no-gutters>
+                        <v-col>
+                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath3'>
+                                <div class="mt-auto">{{itemName3}} -- {{itemPrice3}}円</div>
+                            </v-card>
+                        </v-col>
+                        <v-col>
+                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath4'>
+                                <div class="mt-auto">{{itemName4}} -- {{itemPrice4}}円</div>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+
+
+                </v-container>
+            </template>
+
+        </v-content> -->
+
+            <!-- フッター -->
+            <!-- <v-footer color="cyan" app>
                     <v-spacer></v-spacer>
                     <span class="white--text">&copy; 2020 Trans Menu</span>
                 </v-footer>
 
 
             </v-app>
-        </v-app>
+        </v-app> -->
     </div>
 
     <!-- ------------------------------- -->
@@ -207,9 +311,15 @@
                         props: {
                             source: String,
                         },
+
                         data: function () {
                             return {
-                                drawer: null,
+                                tab: null,
+                                items: [
+                                    '日本語', 'English', '中国語', '韓国語',
+                                ],
+                                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+
                                 //店舗情報
                                 storeName: doc.data().storeName,
                                 storePicPath: doc.data().storePicPath,
