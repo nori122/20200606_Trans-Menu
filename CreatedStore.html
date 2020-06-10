@@ -49,48 +49,9 @@
 
 
 
+
 <body>
     <div id="app">
-        <!-- <v-app id="inspire">
-            <v-app id="inspire">
-
-                ナビゲーションドロワー
-                <v-navigation-drawer v-model="drawer" app right>
-                    <v-list dense>
-                        <v-list-item href="index.html">
-                            <v-list-item-action>
-                                <v-icon>mdi-home</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title>トップ</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                        <v-list-item href="StoreCreate.html">
-                            <v-list-item-action>
-                                <v-icon>mdi-format-list-bulleted</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title>メニュー作成</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                        <v-list-item>
-                            <v-list-item-action>
-                                <v-icon>mdi-email</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title>お問い合わせ</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </v-navigation-drawer>
-
-                アップバー
-                <v-app-bar app color="cyan" dark>
-                    <v-toolbar-title class="headline">Trans Menu</v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-                </v-app-bar> -->
-
         <template>
             <v-card color="basil">
                 <v-card-title class="text-center justify-center py-6">
@@ -184,20 +145,19 @@
                         </v-content>
                     </v-tab-item>
 
-
                 </v-tabs-items>
             </v-card>
         </template>
+    </div>
 
+    <!-- <v-content> -->
 
-        <v-content>
-
-            <!-- 店舗情報 -->
-            <!-- <img style="width:90%;" class="ma-5" alt='' v-bind:src=storePicPath>
+    <!-- 店舗情報 -->
+    <!-- <img style="width:90%;" class="ma-5" alt='' v-bind:src=storePicPath>
             <h1 class="text-center">{{storeName}}</h1> -->
 
-            <!-- 商品情報 -->
-            <!-- <template>
+    <!-- 商品情報 -->
+    <!-- <template>
                 <v-container class="grey lighten-5">
                     <v-row no-gutters>
                         <v-col>
@@ -235,8 +195,8 @@
 
         </v-content> -->
 
-            <!-- フッター -->
-            <!-- <v-footer color="cyan" app>
+    <!-- フッター -->
+    <!-- <v-footer color="cyan" app>
                     <v-spacer></v-spacer>
                     <span class="white--text">&copy; 2020 Trans Menu</span>
                 </v-footer>
@@ -244,7 +204,8 @@
 
             </v-app>
         </v-app> -->
-    </div>
+
+
 
     <!-- ------------------------------- -->
     <!-- 設定ファイル                      -->
@@ -308,71 +269,64 @@
         //   javascript, Vue.js
 
         //選択された店舗名を代入する。localStorageとかで渡すか？
-        const selectedStore = "ジーズ食堂";
+        const selectedStore = "Avostand";
 
         //storeNameで指定して取得
-        storeDB.where("storeName", "==", selectedStore)
-            .get()
-            .then(function (querySnapshot) {
-                querySnapshot.forEach(function (doc) {
-                    // doc.data() is never undefined for query doc snapshots
-                    console.log(doc.id);
-                    console.log(doc.data());
+        storeDB.where("storeName", "==", selectedStore).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id);
+                console.log(doc.data());
 
 
-                    //vueインスタンス
-                    new Vue({
-                        el: '#app',
-                        vuetify: new Vuetify(),
-                        name: 'LayoutsDemosBaselineFlipped',
-                        props: {
-                            source: String,
+                //vueインスタンス
+                new Vue({
+                    el: '#app',
+                    vuetify: new Vuetify(),
+                    name: 'LayoutsDemosBaselineFlipped',
+                    props: {
+                        source: String,
+                    },
+
+                    data: function () {
+                        return {
+                            tab: null,
+                            //店舗情報
+                            storeName: doc.data().storeName,
+                            storePicPath: doc.data().storePicPath,
+                            storeColor: '',
+                            storeComment: '安くて早くてうまいです！',
+
+                            //メニュー情報
+                            itemName1: doc.data().iteminfo1.itemName1,
+                            itemPrice1: doc.data().iteminfo1.itemPrice1,
+                            itemPicPath1: doc.data().iteminfo1.itemPicPath1,
+                            itemName2: doc.data().iteminfo2.itemName2,
+                            itemPrice2: doc.data().iteminfo2.itemPrice2,
+                            itemPicPath2: doc.data().iteminfo2.itemPicPath2,
+                            itemName3: doc.data().iteminfo3.itemName3,
+                            itemPrice3: doc.data().iteminfo3.itemPrice3,
+                            itemPicPath3: doc.data().iteminfo3.itemPicPath3,
+                            itemName4: doc.data().iteminfo4.itemName4,
+                            itemPrice4: doc.data().iteminfo4.itemPrice4,
+                            itemPicPath4: doc.data().iteminfo4.itemPicPath4,
+                        };
+                    },
+
+                    methods: {
+                        //'StoreCreate.html'に遷移
+                        moveToStoreCreate: function () {
+                            location.href = 'StoreCreate.html';
                         },
-
-                        data: function () {
-                            return {
-                                tab: null,
-                                //店舗情報
-                                storeName: doc.data().storeName,
-                                storePicPath: doc.data().storePicPath,
-                                storeColor: '',
-                                storeComment: '安くて早くてうまいです！',
-
-                                //メニュー情報
-                                itemName1: doc.data().iteminfo1.itemName1,
-                                itemPrice1: doc.data().iteminfo1.itemPrice1,
-                                itemPicPath1: doc.data().iteminfo1.itemPicPath1,
-                                itemName2: doc.data().iteminfo2.itemName2,
-                                itemPrice2: doc.data().iteminfo2.itemPrice2,
-                                itemPicPath2: doc.data().iteminfo2.itemPicPath2,
-                                itemName3: doc.data().iteminfo3.itemName3,
-                                itemPrice3: doc.data().iteminfo3.itemPrice3,
-                                itemPicPath3: doc.data().iteminfo3.itemPicPath3,
-                                itemName4: doc.data().iteminfo4.itemName4,
-                                itemPrice4: doc.data().iteminfo4.itemPrice4,
-                                itemPicPath4: doc.data().iteminfo4.itemPicPath4,
-                            };
-                        },
-
-                        methods: {
-                            //'StoreCreate.html'に遷移
-                            moveToStoreCreate: function () {
-                                location.href = 'StoreCreate.html';
-                            },
-                            //'StoreList.html'に遷移
-                            moveToStoreList: function () {
-                                location.href = 'https://www.google.com/'
-                            }
+                        //'StoreList.html'に遷移
+                        moveToStoreList: function () {
+                            location.href = 'https://www.google.com/'
                         }
-
-
-                    });
-
+                    }
                 });
-            })
-            .catch(function (error) {
-                console.log("Error getting documents: ", error);
             });
+        });
+
 
 
 
