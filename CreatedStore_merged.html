@@ -169,10 +169,55 @@
         // FirestoreのstoresコレクションをstoreDBオブジェクトとして定義
 
         //storeNameで指定して取得
-        var docRef = firebase.firestore().collection("stores").doc("store1");
+        docRef = firebase.firestore().collection("stores").doc("store1");
         docRef.get().then(function (doc) {
             if (doc.exists) {
                 console.log("ドキュメントデータは、", doc.data());
+                new Vue({
+                    el: '#app',
+                    vuetify: new Vuetify(),
+                    props: {
+                        source: String,
+                    },
+
+                    data: function () {
+                        return {
+                            tab: null,
+                            //店舗情報
+                            storeName: doc.data().storeName,
+                            storePicPath: doc.data().storePicPath,
+                            storeColor: '',
+                            storeComment: '安くて早くてうまいです！',
+
+                            //メニュー情報
+                            itemName1: doc.data().iteminfo1.itemName1,
+                            itemPrice1: doc.data().iteminfo1.itemPrice1,
+                            itemPicPath1: doc.data().iteminfo1.itemPicPath1,
+                            itemName2: doc.data().iteminfo2.itemName2,
+                            itemPrice2: doc.data().iteminfo2.itemPrice2,
+                            itemPicPath2: doc.data().iteminfo2.itemPicPath2,
+                            itemName3: doc.data().iteminfo3.itemName3,
+                            itemPrice3: doc.data().iteminfo3.itemPrice3,
+                            itemPicPath3: doc.data().iteminfo3.itemPicPath3,
+                            itemName4: doc.data().iteminfo4.itemName4,
+                            itemPrice4: doc.data().iteminfo4.itemPrice4,
+                            itemPicPath4: doc.data().iteminfo4.itemPicPath4,
+                        };
+                    },
+
+                    methods: {
+                        //'StoreCreate.html'に遷移
+                        moveToStoreCreate: function () {
+                            location.href = 'StoreCreate.html';
+                        },
+                        //'StoreList.html'に遷移
+                        moveToStoreList: function () {
+                            location.href = 'https://www.google.com/'
+                        }
+                    }
+
+
+                });
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
