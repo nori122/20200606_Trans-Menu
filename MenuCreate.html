@@ -357,6 +357,8 @@
                     this.pushItem2toDB()
                     this.pushItem3toDB()
                     this.pushItem4toDB()
+                    //完了alert
+                    alert("画像登録が完了しました")
                 },
 
                 //item1の登録
@@ -386,7 +388,7 @@
                             //     itemPrice1: this.itemPrice1,
                             //     itemPicPath1: url,
                             // });
-                            storeDB.doc('50WeiSf4vYfemT5Wsfw4').update({
+                            storeDB.doc('store1').update({
                                 iteminfo1:
                                 {
                                     itemName1: this.itemName1,
@@ -417,7 +419,7 @@
                             // image.src = url
 
                             //Cloud Firestoreに店舗名と画像URLを追加
-                            storeDB.doc('50WeiSf4vYfemT5Wsfw4').update({
+                            storeDB.doc('store1').update({
                                 iteminfo2:
                                 {
                                     itemName2: this.itemName2,
@@ -452,7 +454,7 @@
                             // image.src = url
 
                             //Cloud Firestoreに店舗名と画像URLを追加
-                            storeDB.doc('50WeiSf4vYfemT5Wsfw4').update({
+                            storeDB.doc('store1').update({
                                 iteminfo3:
                                 {
                                     itemName3: this.itemName3,
@@ -484,7 +486,7 @@
                             // image.src = url
 
                             //Cloud Firestoreに店舗名と画像URLを追加
-                            storeDB.doc('50WeiSf4vYfemT5Wsfw4').update({
+                            storeDB.doc('store1').update({
                                 iteminfo4:
                                 {
                                     itemName4: this.itemName4,
@@ -493,8 +495,7 @@
                                 },
                             });
 
-                            //完了alert
-                            alert("画像登録が完了しました")
+
 
                         })
 

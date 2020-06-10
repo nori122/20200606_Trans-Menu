@@ -206,7 +206,7 @@
                             // image.src = url
 
                             //Cloud Firestoreに店舗名と画像URLを追加
-                            storeDB.add({
+                            storeDB.doc('store1').set({
                                 storeName: this.storeName,
                                 storePicPath: url,
                                 storeColor: "",
