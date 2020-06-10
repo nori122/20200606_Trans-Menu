@@ -26,6 +26,15 @@
         .basil--text {
             color: #356859 !important;
         }
+
+
+        .StoreContainer {
+            display: flex;
+        }
+
+        .StoreContainer div {
+            padding: 3px;
+        }
     </style>
 
 </head>
@@ -107,38 +116,46 @@
                     <v-tab-item color="basil" flat>
                         <v-content style="background-color:#FFFBE6;">
                             <!-- 店舗情報 -->
-                            <img style="width:90%;" class="ma-5" alt='' v-bind:src=storePicPath>
+                            <v-container class="StoreContainer">
+                                <div style="width:45vw">
+                                    <img style="width:45vw;" class="" alt='' v-bind:src=storePicPath>
+                                </div>
+                                <div>
+                                    <p style="font-size:13px; margin:0 15px;">{{storeComment}}</p>
+                                </div>
+                            </v-container>
                             <!-- <h1 class="text-center">{{storeName}}</h1> -->
 
                             <!-- 商品情報 -->
                             <template>
                                 <v-container class="grey lighten-5">
+                                    <h4>メニュー</h4>
                                     <v-row no-gutters>
                                         <v-col>
-                                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                            <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
                                                 <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath1'>
-                                                <div class="mt-auto">{{itemName1}} -- {{itemPrice1}}円</div>
+                                                <div>{{itemName1}} -- {{itemPrice1}}円</div>
                                             </v-card>
                                         </v-col>
 
                                         <v-col>
-                                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                            <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
                                                 <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath2'>
-                                                <div class="mt-auto">{{itemName2}} -- {{itemPrice2}}円</div>
+                                                <div>{{itemName2}} -- {{itemPrice2}}円</div>
                                             </v-card>
                                         </v-col>
                                     </v-row>
                                     <v-row no-gutters>
                                         <v-col>
-                                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                            <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
                                                 <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath3'>
-                                                <div class="mt-auto">{{itemName3}} -- {{itemPrice3}}円</div>
+                                                <div>{{itemName3}} -- {{itemPrice3}}円</div>
                                             </v-card>
                                         </v-col>
                                         <v-col>
-                                            <v-card style="height:100%;" class="ma-1 pa-1" outlined tile>
+                                            <v-card style="height:100%;" class="ma-3 pa-5" outlined tile>
                                                 <img style="width:100%;" src='' alt='' v-bind:src='itemPicPath4'>
-                                                <div class="mt-auto">{{itemName4}} -- {{itemPrice4}}円</div>
+                                                <div>{{itemName4}} -- {{itemPrice4}}円</div>
                                             </v-card>
                                         </v-col>
                                     </v-row>
@@ -315,15 +332,11 @@
                         data: function () {
                             return {
                                 tab: null,
-                                items: [
-                                    '日本語', 'English', '中国語', '韓国語',
-                                ],
-                                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-
                                 //店舗情報
                                 storeName: doc.data().storeName,
                                 storePicPath: doc.data().storePicPath,
                                 storeColor: '',
+                                storeComment: '安くて早くてうまいです！',
 
                                 //メニュー情報
                                 itemName1: doc.data().iteminfo1.itemName1,

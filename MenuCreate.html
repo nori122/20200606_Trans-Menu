@@ -234,7 +234,8 @@
                         <v-container class="mt-n5 mb-5 fill-height" fluid>
 
                             <v-col class="text-center">
-                                <v-btn class="red lighten-3 white--text" v-on:click='pushItemsToDB' id="pushItemsToDB">
+                                <v-btn width="190" class="red lighten-3 white--text" v-on:click='pushItemsToDB'
+                                    id="pushItemsToDB">
                                     メニュー情報の登録
                                 </v-btn>
                             </v-col>
@@ -242,8 +243,9 @@
                             <v-col class="text-center">
                                 <!-- <v-btn class="red lighten-2 white--text" v-on:click='moveToStorePath'>メニューサイトを作る
                                     </v-btn> -->
-                                <v-btn :disabled="dialog" :loading="dialog" class="red lighten-2 white--text"
-                                    @click="dialog=true" v-on:mouseout="moveToStorePath">
+                                <v-btn width="190" :disabled="dialog" :loading="dialog"
+                                    class="red lighten-2 white--text" @click="dialog=true"
+                                    v-on:mouseout="moveToStorePath">
                                     メニューサイトを作る
                                 </v-btn>
 
@@ -260,7 +262,7 @@
                             </v-col>
 
                             <v-col class="text-center">
-                                <v-btn class="red white--text" @click="moveToStorePath">
+                                <v-btn width="190" class="red white--text" @click="moveToStorePath">
                                     メニューサイトの表示
                                 </v-btn>
 
